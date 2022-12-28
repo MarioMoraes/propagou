@@ -6,17 +6,17 @@ class AppUiConfig {
 
   static String get title => 'Propagou';
 
-  static const MaterialColor _swatch = MaterialColor(0xffFFD600, {
-    50: Color(0xffffd600),
-    100: Color(0xFFe6c100),
-    200: Color(0xFFccab00),
-    300: Color(0xFFb39600),
-    400: Color(0xFF998000),
-    500: Color(0xFF806b00),
-    600: Color(0xFF665600),
-    700: Color(0xFFffd600),
-    800: Color(0xFFffde33),
-    900: Color(0xFFffe666),
+  static const MaterialColor _swatch = MaterialColor(0xff75339b, {
+    50: Color(0xff4b0075),
+    100: Color(0xFF641a8f),
+    200: Color(0xFF3a005b),
+    300: Color(0xFF420068),
+    400: Color(0xFF32004e),
+    500: Color(0xFF2a0041),
+    600: Color(0xFF75339b),
+    700: Color(0xFF874da8),
+    800: Color(0xFF9866b4),
+    900: Color(0xFFa980c1),
   });
 
   static var theme = ThemeData(

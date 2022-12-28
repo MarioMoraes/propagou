@@ -6,13 +6,37 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ProPagou'),
+      body: Stack(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.linearToSrgbGamma(),
+                image: AssetImage(
+                  'assets/images/services.jpg',
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding:
+                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.85),
+            child: Center(
+              child: SizedBox(
+                height: 40,
+                width: 200,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('Entrar'),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
-      body: ElevatedButton(
-          onPressed: () {
-          },
-          child: const Text('LOGIN')),
     );
   }
 }
