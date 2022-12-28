@@ -13,8 +13,8 @@ class ButtonStyles {
     return _instance!;
   }
 
-  ButtonStyle get yellowButton => ElevatedButton.styleFrom(
-        backgroundColor: ColorsApp.instance.yellow,
+  ButtonStyle get secondaryButton => ElevatedButton.styleFrom(
+        backgroundColor: ColorsApp.instance.secondary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(7),
         ),
@@ -33,14 +33,14 @@ class ButtonStyles {
         ),
       );
 
-  ButtonStyle get yellowOutlinedButton => OutlinedButton.styleFrom(
+  ButtonStyle get secondaryOutlinedButton => OutlinedButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
         textStyle: TextStyles.instance.textPrimaryExtraBold.copyWith(
           fontSize: 14,
         ),
-        side: BorderSide(color: ColorsApp.instance.yellow),
+        side: BorderSide(color: ColorsApp.instance.secondary),
       );
 
   ButtonStyle get primaryOutlinedButton => OutlinedButton.styleFrom(

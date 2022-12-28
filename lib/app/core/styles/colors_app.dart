@@ -10,11 +10,11 @@ class ColorsApp {
     return _instance!;
   }
 
-  Color get primary => const Color(0xffFFD600);
-  Color get secondary => const Color(0xff920AB4);
-  Color get yellow => const Color(0xfffdc350);
+  Color get primary => const Color(0xff5A2E69);
+  Color get secondary => const Color(0xfffdc350);
   Color get grey => const Color(0xffcccccc);
   Color get greyDark => const Color(0xff999999);
+  Color get white => Colors.white;
 }
 
 extension ColorsAppExtension on BuildContext {

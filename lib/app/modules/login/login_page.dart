@@ -9,7 +9,10 @@ class LoginPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('ProPagou'),
       ),
-      body: ElevatedButton(onPressed: () {}, child: const Text('LOGIN')),
+      body: ElevatedButton(
+          onPressed: () {
+          },
+          child: const Text('LOGIN')),
     );
   }
 }
