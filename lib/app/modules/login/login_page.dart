@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -29,7 +30,9 @@ class LoginPage extends StatelessWidget {
                 height: 40,
                 width: 200,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Modular.to.pushNamed('/home');
+                  },
                   child: const Text('Entrar'),
                 ),
               ),
