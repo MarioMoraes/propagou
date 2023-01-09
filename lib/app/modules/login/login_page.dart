@@ -31,7 +31,7 @@ class LoginPage extends StatelessWidget {
                 width: 200,
                 child: ElevatedButton(
                   onPressed: () {
-                    Modular.to.pushNamed('/home');
+                    Modular.to.pushReplacementNamed('/home');
                   },
                   child: const Text('Entrar'),
                 ),

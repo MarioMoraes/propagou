@@ -1,0 +1,232 @@
+[
+  {
+    "id": 1,
+    "grupo_id": 1,
+    "descricao": "Maquiadores"
+  },
+  {
+    "id": 2,
+    "grupo_id": 1,
+    "descricao": "Cabelereiros"
+  },
+  {
+    "id": 3,
+    "grupo_id": 1,
+    "descricao": "Barbeiros"
+  },
+  {
+    "id": 4,
+    "grupo_id": 1,
+    "descricao": "Sobrancelha"
+  },
+  {
+    "id": 5,
+    "grupo_id": 1,
+    "descricao": "Manicure/Pedicure"
+  },
+  {
+    "id": 6,
+    "grupo_id": 2,
+    "descricao": "Bar"
+  },
+  {
+    "id": 7,
+    "grupo_id": 2,
+    "descricao": "Restaurante"
+  },
+  {
+    "id": 8,
+    "grupo_id": 2,
+    "descricao": "Docerias"
+  },
+  {
+    "id": 9,
+    "grupo_id": 2,
+    "descricao": "Sorveteria"
+  },
+  {
+    "id": 10,
+    "grupo_id": 2,
+    "descricao": "Açaí"
+  },
+  {
+    "id": 11,
+    "grupo_id": 2,
+    "descricao": "Lanches/Padaria"
+  },
+  {
+    "id": 12,
+    "grupo_id": 4,
+    "descricao": "Veterinário"
+  },
+  {
+    "id": 13,
+    "grupo_id": 4,
+    "descricao": "Banho/Tosa"
+  },
+  {
+    "id": 14,
+    "grupo_id": 4,
+    "descricao": "PetShop"
+  },
+  {
+    "id": 15,
+    "grupo_id": 4,
+    "descricao": "Passeador/Pet Sitter"
+  },
+  {
+    "id": 16,
+    "grupo_id": 4,
+    "descricao": "Hospedagem/Adestramento"
+  },
+  {
+    "id": 17,
+    "grupo_id": 5,
+    "descricao": "Diarista/Passadeira"
+  },
+  {
+    "id": 18,
+    "grupo_id": 5,
+    "descricao": "Chaveiro"
+  },
+  {
+    "id": 19,
+    "grupo_id": 5,
+    "descricao": "Marido de Aluguel"
+  },
+  {
+    "id": 20,
+    "grupo_id": 5,
+    "descricao": "Dedetizadora"
+  },
+  {
+    "id": 21,
+    "grupo_id": 5,
+    "descricao": "Vidraçaria"
+  },
+  {
+    "id": 22,
+    "grupo_id": 6,
+    "descricao": "Montador de Móveis"
+  },
+  {
+    "id": 23,
+    "grupo_id": 6,
+    "descricao": "Jardineiro"
+  },
+  {
+    "id": 24,
+    "grupo_id": 6,
+    "descricao": "Mudança/Frete"
+  },
+  {
+    "id": 25,
+    "grupo_id": 6,
+    "descricao": "Eletricista"
+  },
+  {
+    "id": 26,
+    "grupo_id": 6,
+    "descricao": "Pintor"
+  },
+  {
+    "id": 27,
+    "grupo_id": 7,
+    "descricao": "Idiomas"
+  },
+  {
+    "id": 28,
+    "grupo_id": 7,
+    "descricao": "Música"
+  },
+  {
+    "id": 29,
+    "grupo_id": 7,
+    "descricao": "Auto Escola"
+  },
+  {
+    "id": 30,
+    "grupo_id": 6,
+    "descricao": "Cursos Profissionalizantes"
+  },
+  {
+    "id": 31,
+    "grupo_id": 7,
+    "descricao": "Reforço Escolar/Vestibular"
+  },
+  {
+    "id": 32,
+    "grupo_id": 8,
+    "descricao": "Funilaria/Pintura"
+  },
+  {
+    "id": 33,
+    "grupo_id": 8,
+    "descricao": "Mecânico"
+  },
+  {
+    "id": 34,
+    "grupo_id": 8,
+    "descricao": "Elétrica"
+  },
+  {
+    "id": 35,
+    "grupo_id": 8,
+    "descricao": "Lava Jato"
+  },
+  {
+    "id": 36,
+    "grupo_id": 8,
+    "descricao": "Posto de Gasolina"
+  },
+  {
+    "id": 37,
+    "grupo_id": 9,
+    "descricao": "Hamburgueria"
+  },
+  {
+    "id": 38,
+    "grupo_id": 9,
+    "descricao": "Pizzaria"
+  },
+  {
+    "id": 39,
+    "grupo_id": 9,
+    "descricao": "Comida Japonesa"
+  },
+  {
+    "id": 40,
+    "grupo_id": 9,
+    "descricao": "Pastelaria"
+  },
+  {
+    "id": 41,
+    "grupo_id": 9,
+    "descricao": "Marmitaria"
+  },
+  {
+    "id": 42,
+    "grupo_id": 10,
+    "descricao": "Corte e Costura"
+  },
+  {
+    "id": 43,
+    "grupo_id": 10,
+    "descricao": "Loja Roupas"
+  },
+  {
+    "id": 44,
+    "grupo_id": 10,
+    "descricao": "Loja Sapatos"
+  },
+  {
+    "id": 45,
+    "grupo_id": 10,
+    "descricao": "Moda Infantil"
+  },
+  {
+    "id": 46,
+    "grupo_id": 10,
+    "descricao": "Acessórios"
+  }
+]
