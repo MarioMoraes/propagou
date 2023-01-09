@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:propagou/app/modules/home/controller/home_state.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final HomeController homeController;
+  const HomePage({Key? key, required this.homeController}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -10,6 +12,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
+    widget.homeController.getTipos();
     super.initState();
   }
 
