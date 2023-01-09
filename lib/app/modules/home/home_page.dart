@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.colors.background,
       body: CustomScrollView(
         slivers: [
           const SliverAppBar(
@@ -68,8 +69,8 @@ class _HomePageState extends State<HomePage> {
               builder: (context, list) {
                 return SliverGrid.count(
                   crossAxisCount: 3,
-                  mainAxisSpacing: 5.0,
-                  crossAxisSpacing: 5.0,
+                  mainAxisSpacing: 10.0,
+                  crossAxisSpacing: 10.0,
                   children: list
                       .map(
                         (e) => CardTipos(
