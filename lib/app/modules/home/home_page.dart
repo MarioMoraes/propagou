@@ -67,18 +67,23 @@ class _HomePageState extends State<HomePage> {
               bloc: widget.homeController,
               selector: (state) => state.listTipos,
               builder: (context, list) {
-                return SliverGrid.count(
-                  crossAxisCount: 3,
-                  mainAxisSpacing: 10.0,
-                  crossAxisSpacing: 10.0,
-                  children: list
-                      .map(
-                        (e) => CardTipos(
-                          descricao: e.descricao,
-                          icon: e.icon,
-                        ),
-                      )
-                      .toList(),
+                return SliverPadding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                  sliver: SliverGrid.count(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 5.0,
+                    crossAxisSpacing: 5.0,
+                    childAspectRatio: 1,
+                    children: list
+                        .map(
+                          (e) => CardTipos(
+                            descricao: e.descricao,
+                            icon: e.icon,
+                          ),
+                        )
+                        .toList(),
+                  ),
                 );
               }),
         ],

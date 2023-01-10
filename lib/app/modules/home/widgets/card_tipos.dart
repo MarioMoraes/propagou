@@ -15,6 +15,7 @@ class CardTipos extends StatelessWidget {
       width: 80,
       decoration: BoxDecoration(
         color: Colors.grey.shade200,
+        border: Border.all(color: Colors.grey),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
@@ -37,7 +38,7 @@ class CardTipos extends StatelessWidget {
             descricao,
             style: TextStyle(
                 fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w400,
                 color: context.colors.primary),
           ),
         ],
