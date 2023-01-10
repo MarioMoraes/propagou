@@ -78,6 +78,7 @@ class _HomePageState extends State<HomePage> {
                     children: list
                         .map(
                           (e) => CardTipos(
+                            id: e.id,
                             descricao: e.descricao,
                             icon: e.icon,
                           ),

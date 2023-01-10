@@ -6,8 +6,12 @@ class HomeController extends Cubit<HomeState> {
   HomeController({required this.tipoService}) : super(HomeState.initial());
 
   Future<void> getTipos() async {
-    emit(state.copyWith(listTipos: [], status: SearchStatus.loading));
-    final response = await tipoService.getTipos();
-    emit(state.copyWith(listTipos: response, status: SearchStatus.completed));
+    try {
+      emit(state.copyWith(listTipos: [], status: SearchStatus.loading));
+      final response = await tipoService.getTipos();
+      emit(state.copyWith(listTipos: response, status: SearchStatus.completed));
+    } on Exception {
+      emit(state.copyWith(listTipos: [], status: SearchStatus.failure));
+    }
   }
 }
