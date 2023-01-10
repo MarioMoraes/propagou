@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:propagou/app/core/styles/colors_app.dart';
+import 'package:propagou/app/core/styles/text_styles.dart';
 import 'package:propagou/app/models/subtipo_model.dart';
 import 'package:propagou/app/modules/subtipos/controller/subtipos_state.dart';
+import 'package:propagou/app/modules/subtipos/widgets/card_subtipo.dart';
 
 class SubtiposPage extends StatefulWidget {
   final SubTiposController subTiposController;
@@ -32,9 +34,13 @@ class _SubtiposPageState extends State<SubtiposPage> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            pinned: true,
-            expandedHeight: 150,
-            title: Text(widget.args['descricao'].toUpperCase()),
+            expandedHeight: 120,
+            centerTitle: true,
+            title: Text(
+              widget.args['descricao'].toUpperCase(),
+              style: context.textStyles.textPrimaryExtraBold
+                  .copyWith(color: context.colors.secondary, fontSize: 20),
+            ),
           ),
           SliverToBoxAdapter(
             child: Column(
@@ -73,18 +79,16 @@ class _SubtiposPageState extends State<SubtiposPage> {
                 return SliverPadding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                  sliver: SliverGrid.count(
-                    crossAxisCount: 3,
-                    mainAxisSpacing: 5.0,
-                    crossAxisSpacing: 5.0,
-                    childAspectRatio: 1,
-                    children: list
-                        .map(
-                          (e) => Card(
-                            child: Text(e.descricao),
-                          ),
-                        )
-                        .toList(),
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate(
+                      list
+                          .map(
+                            (e) => CardSubtipo(
+                              descricao: e.descricao,
+                            ),
+                          )
+                          .toList(),
+                    ),
                   ),
                 );
               }),

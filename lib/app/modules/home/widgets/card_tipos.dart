@@ -15,7 +15,7 @@ class CardTipos extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Modular.to.pushNamed('/subtipos',
-          arguments: {'id': id, 'descricao': descricao}),
+          arguments: {'id': id, 'descricao': descricao, 'icon': icon}),
       child: Container(
         height: 80,
         width: 80,

@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
         slivers: [
           const SliverAppBar(
             pinned: true,
-            expandedHeight: 150,
+            expandedHeight: 120,
             title: Text('PROPAGOU'),
           ),
           SliverToBoxAdapter(
