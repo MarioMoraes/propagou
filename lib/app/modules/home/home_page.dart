@@ -50,9 +50,9 @@ class _HomePageState extends State<HomePage> {
                 sliver: SliverToBoxAdapter(
                   child: Center(
                     child: SizedBox(
-                      height: MediaQuery.of(context).size.height * .55,
+                      height: MediaQuery.of(context).size.height * .65,
                       child: Center(
-                        child: LoadingAnimationWidget.beat(
+                        child: LoadingAnimationWidget.staggeredDotsWave(
                           color: context.colors.primary,
                           size: 35,
                         ),
