@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:propagou/app/core/styles/colors_app.dart';
 import 'package:propagou/app/models/tipo_model.dart';
+import 'package:propagou/app/modules/home/controller/home_filter.dart';
 import 'package:propagou/app/modules/home/controller/home_state.dart';
 import 'package:propagou/app/modules/home/widgets/card_tipos.dart';
 
@@ -30,13 +31,16 @@ class _HomePageState extends State<HomePage> {
         slivers: [
           const SliverAppBar(
             pinned: true,
-            expandedHeight: 120,
+            expandedHeight: 100,
             title: Text('PROPAGOU'),
           ),
           SliverToBoxAdapter(
             child: Column(
               children: const [
-                // StickerStatusFilter(filterSelected: filterSelected),
+                SizedBox(
+                  height: 5,
+                ),
+                HomeFilter(),
                 // StickerGroupFilter(countries: countries),
               ],
             ),
@@ -71,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                   sliver: SliverGrid.count(
-                    crossAxisCount: 3,
+                    crossAxisCount: 4,
                     mainAxisSpacing: 5.0,
                     crossAxisSpacing: 5.0,
                     childAspectRatio: 1,
