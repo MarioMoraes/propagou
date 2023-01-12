@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:propagou/app/core/styles/colors_app.dart';
 
 class ProvedorPage extends StatefulWidget {
   const ProvedorPage({Key? key}) : super(key: key);
@@ -10,13 +11,19 @@ class ProvedorPage extends StatefulWidget {
 class _ProvedorPageState extends State<ProvedorPage> {
   int _currentStep = 0;
   StepperType stepperType = StepperType.vertical;
+  FocusNode focus = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    focus.requestFocus();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text('Flutter Stepper Demo'),
+        title: const Text('Cadastro'),
         centerTitle: true,
       ),
       body: SizedBox(
@@ -24,6 +31,31 @@ class _ProvedorPageState extends State<ProvedorPage> {
           children: [
             Expanded(
               child: Stepper(
+                controlsBuilder: (context, _) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          continued();
+                        },
+                        child: Text(
+                          'AVANÇAR',
+                          style: TextStyle(color: context.colors.primary),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          cancel();
+                        },
+                        child: Text(
+                          'VOLTAR',
+                          style: TextStyle(color: context.colors.primary),
+                        ),
+                      ),
+                    ],
+                  );
+                },
                 type: stepperType,
                 physics: const ScrollPhysics(),
                 currentStep: _currentStep,
@@ -36,25 +68,25 @@ class _ProvedorPageState extends State<ProvedorPage> {
                     content: Column(
                       children: <Widget>[
                         TextFormField(
+                          focusNode: focus,
                           decoration: const InputDecoration(
                             hintText: 'Nome ou Razão Social',
                           ),
                         ),
                         TextFormField(
                           decoration:
-                              const InputDecoration(labelText: 'Endereço'),
+                              const InputDecoration(hintText: 'Endereço'),
+                        ),
+                        TextFormField(
+                          decoration: const InputDecoration(hintText: 'Bairro'),
                         ),
                         TextFormField(
                           decoration:
-                              const InputDecoration(labelText: 'Bairro'),
+                              const InputDecoration(hintText: 'Telefone'),
                         ),
                         TextFormField(
                           decoration:
-                              const InputDecoration(labelText: 'Telefone'),
-                        ),
-                        TextFormField(
-                          decoration:
-                              const InputDecoration(labelText: 'CNPJ/CPF'),
+                              const InputDecoration(hintText: 'CNPJ/CPF'),
                         ),
                       ],
                     ),
@@ -69,15 +101,15 @@ class _ProvedorPageState extends State<ProvedorPage> {
                       children: <Widget>[
                         TextFormField(
                           decoration:
-                              const InputDecoration(labelText: 'WhatsApp'),
+                              const InputDecoration(hintText: 'WhatsApp'),
                         ),
                         TextFormField(
                           decoration:
-                              const InputDecoration(labelText: 'Facebook'),
+                              const InputDecoration(hintText: 'Facebook'),
                         ),
                         TextFormField(
                           decoration:
-                              const InputDecoration(labelText: 'Instagram'),
+                              const InputDecoration(hintText: 'Instagram'),
                         ),
                       ],
                     ),
@@ -92,7 +124,7 @@ class _ProvedorPageState extends State<ProvedorPage> {
                       children: <Widget>[
                         TextFormField(
                           decoration: const InputDecoration(
-                              labelText: 'Descrição do Serviço ou Produto'),
+                              hintText: 'Descrição do Serviço ou Produto'),
                         ),
                       ],
                     ),

@@ -3,9 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:propagou/app/core/styles/colors_app.dart';
 import 'package:propagou/app/models/tipo_model.dart';
-import 'package:propagou/app/modules/home/controller/home_filter.dart';
 import 'package:propagou/app/modules/home/controller/home_state.dart';
 import 'package:propagou/app/modules/home/widgets/card_tipos.dart';
+
+import 'widgets/home_filter.dart';
 
 class HomePage extends StatefulWidget {
   final HomeController homeController;
@@ -38,7 +39,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: const [
                 SizedBox(
-                  height: 5,
+                  height: 8,
                 ),
                 HomeFilter(),
                 // StickerGroupFilter(countries: countries),

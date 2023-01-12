@@ -20,32 +20,28 @@ class CardTipos extends StatelessWidget {
         height: 80,
         width: 80,
         decoration: BoxDecoration(
-          color: Colors.grey.shade200,
-          border: Border.all(color: Colors.grey),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 4,
-              offset: const Offset(0, 3), // changes position of shadow
-            ),
-          ],
-          borderRadius: BorderRadius.circular(10),
+          color: context.colors.primary.withOpacity(0.1),
+          border: Border.all(color: Colors.grey.withOpacity(0.5)),
+          borderRadius: BorderRadius.circular(5),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const SizedBox(
+              height: 7,
+            ),
             Image.asset('assets/images/$icon', fit: BoxFit.cover, height: 35),
             const SizedBox(
-              height: 15,
+              height: 7,
             ),
             Text(
               descricao,
               style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: context.colors.primary),
+                fontSize: 14,
+                fontWeight: FontWeight.w300,
+                color: context.colors.primary,
+              ),
             ),
           ],
         ),
