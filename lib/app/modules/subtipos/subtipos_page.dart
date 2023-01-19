@@ -34,7 +34,7 @@ class _SubtiposPageState extends State<SubtiposPage> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            expandedHeight: 120,
+            expandedHeight: 80,
             centerTitle: true,
             title: Text(
               widget.args['descricao'].toUpperCase(),

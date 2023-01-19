@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:propagou/app/core/styles/colors_app.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String hint;
@@ -35,21 +36,21 @@ class CustomTextFormField extends StatelessWidget {
             obscureText: obscureTextVNValue,
             decoration: InputDecoration(
                 filled: true,
-                fillColor: Colors.grey.shade300,
+                fillColor: context.colors.background,
                 isDense: true,
                 hintText: hint,
                 hintStyle: const TextStyle(
                   color: Colors.black54,
                   fontWeight: FontWeight.w300,
-                  fontSize: 16.0,
+                  fontSize: 14.0,
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderSide: const BorderSide(width: 0, color: Colors.white),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(5),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: const BorderSide(width: 0, color: Colors.white),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(5),
                 ),
                 prefixIcon: showIcon ? Icon(icon, size: 25) : null,
                 suffixIcon: obscureText

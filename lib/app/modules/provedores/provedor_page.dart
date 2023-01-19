@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:propagou/app/core/styles/colors_app.dart';
+
+import 'steps/one_page.dart';
+import 'steps/three_page.dart';
+import 'steps/two_page.dart';
 
 class ProvedorPage extends StatefulWidget {
   const ProvedorPage({Key? key}) : super(key: key);
@@ -9,14 +12,9 @@ class ProvedorPage extends StatefulWidget {
 }
 
 class _ProvedorPageState extends State<ProvedorPage> {
-  int _currentStep = 0;
-  StepperType stepperType = StepperType.vertical;
-  FocusNode focus = FocusNode();
-
   @override
   void initState() {
     super.initState();
-    focus.requestFocus();
   }
 
   @override
@@ -24,133 +22,31 @@ class _ProvedorPageState extends State<ProvedorPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cadastro'),
+        toolbarHeight: 80,
         centerTitle: true,
       ),
-      body: SizedBox(
-        child: Column(
-          children: [
-            Expanded(
-              child: Stepper(
-                controlsBuilder: (context, _) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      TextButton(
-                        onPressed: () {
-                          continued();
-                        },
-                        child: Text(
-                          'AVANÇAR',
-                          style: TextStyle(color: context.colors.primary),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          cancel();
-                        },
-                        child: Text(
-                          'VOLTAR',
-                          style: TextStyle(color: context.colors.primary),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-                type: stepperType,
-                physics: const ScrollPhysics(),
-                currentStep: _currentStep,
-                onStepTapped: (step) => tapped(step),
-                onStepContinue: continued,
-                onStepCancel: cancel,
-                steps: <Step>[
-                  Step(
-                    title: const Text('Dados Pessoais'),
-                    content: Column(
-                      children: <Widget>[
-                        TextFormField(
-                          focusNode: focus,
-                          decoration: const InputDecoration(
-                            hintText: 'Nome ou Razão Social',
-                          ),
-                        ),
-                        TextFormField(
-                          decoration:
-                              const InputDecoration(hintText: 'Endereço'),
-                        ),
-                        TextFormField(
-                          decoration: const InputDecoration(hintText: 'Bairro'),
-                        ),
-                        TextFormField(
-                          decoration:
-                              const InputDecoration(hintText: 'Telefone'),
-                        ),
-                        TextFormField(
-                          decoration:
-                              const InputDecoration(hintText: 'CNPJ/CPF'),
-                        ),
-                      ],
-                    ),
-                    isActive: _currentStep >= 0,
-                    state: _currentStep >= 0
-                        ? StepState.complete
-                        : StepState.disabled,
-                  ),
-                  Step(
-                    title: const Text('Redes Sociais'),
-                    content: Column(
-                      children: <Widget>[
-                        TextFormField(
-                          decoration:
-                              const InputDecoration(hintText: 'WhatsApp'),
-                        ),
-                        TextFormField(
-                          decoration:
-                              const InputDecoration(hintText: 'Facebook'),
-                        ),
-                        TextFormField(
-                          decoration:
-                              const InputDecoration(hintText: 'Instagram'),
-                        ),
-                      ],
-                    ),
-                    isActive: _currentStep >= 0,
-                    state: _currentStep >= 1
-                        ? StepState.complete
-                        : StepState.disabled,
-                  ),
-                  Step(
-                    title: const Text('Mais Informações'),
-                    content: Column(
-                      children: <Widget>[
-                        TextFormField(
-                          decoration: const InputDecoration(
-                              hintText: 'Descrição do Serviço ou Produto'),
-                        ),
-                      ],
-                    ),
-                    isActive: _currentStep >= 0,
-                    state: _currentStep >= 2
-                        ? StepState.complete
-                        : StepState.disabled,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+      body: Navigator(
+        initialRoute: '/one',
+        onGenerateRoute: (settings) {
+          var route = settings.name;
+          Widget page;
+
+          switch (route) {
+            case '/one':
+              page = const OnePage();
+              break;
+            case '/two':
+              page = const TwoPage();
+              break;
+            case '/three':
+              page = const ThreePage();
+              break;
+            default:
+              return null;
+          }
+          return MaterialPageRoute(builder: (context) => page);
+        },
       ),
     );
-  }
-
-  tapped(int step) {
-    setState(() => _currentStep = step);
-  }
-
-  continued() {
-    _currentStep < 2 ? setState(() => _currentStep += 1) : null;
-  }
-
-  cancel() {
-    _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
   }
 }
