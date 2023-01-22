@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:propagou/app/core/styles/colors_app.dart';
+import 'package:propagou/app/core/styles/text_styles.dart';
 import 'package:propagou/app/models/tipo_model.dart';
 import 'package:propagou/app/modules/home/controller/home_state.dart';
 import 'package:propagou/app/modules/home/widgets/card_tipos.dart';
-
-import 'widgets/home_filter.dart';
 
 class HomePage extends StatefulWidget {
   final HomeController homeController;
@@ -41,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 8,
                 ),
-                HomeFilter(),
+                // HomeFilter(),
                 // StickerGroupFilter(countries: countries),
               ],
             ),
@@ -69,29 +68,51 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           BlocSelector<HomeController, HomeState, List<TipoModel>>(
-              bloc: widget.homeController,
-              selector: (state) => state.listTipos,
-              builder: (context, list) {
-                return SliverPadding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                  sliver: SliverGrid.count(
-                    crossAxisCount: 4,
-                    mainAxisSpacing: 5.0,
-                    crossAxisSpacing: 5.0,
-                    childAspectRatio: 1,
-                    children: list
-                        .map(
-                          (e) => CardTipos(
-                            id: e.id,
-                            descricao: e.descricao,
-                            icon: e.icon,
+            bloc: widget.homeController,
+            selector: (state) => state.listTipos,
+            builder: (context, list) {
+              return SliverPadding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8,
+                  vertical: 8,
+                ),
+                sliver: SliverList(
+                  delegate: SliverChildListDelegate(
+                    [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                        child: Text(
+                          'Categorias',
+                          style:
+                              context.textStyles.textPrimaryFontMedium.copyWith(
+                            fontSize: 14,
+                            color: context.colors.primary,
                           ),
-                        )
-                        .toList(),
+                        ),
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 80,
+                        child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: list
+                                .map((e) => Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 8.0),
+                                      child: CardTipos(
+                                        id: e.id,
+                                        descricao: e.descricao,
+                                        icon: e.icon,
+                                      ),
+                                    ))
+                                .toList()),
+                      ),
+                    ],
                   ),
-                );
-              }),
+                ),
+              );
+            },
+          ),
         ],
       ),
     );
