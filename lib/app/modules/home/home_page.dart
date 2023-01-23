@@ -7,6 +7,8 @@ import 'package:propagou/app/models/tipo_model.dart';
 import 'package:propagou/app/modules/home/controller/home_state.dart';
 import 'package:propagou/app/modules/home/widgets/card_tipos.dart';
 
+import 'widgets/home_filter.dart';
+
 class HomePage extends StatefulWidget {
   final HomeController homeController;
 
@@ -40,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 8,
                 ),
-                // HomeFilter(),
+                HomeFilter(),
                 // StickerGroupFilter(countries: countries),
               ],
             ),
@@ -85,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                           'Categorias',
                           style:
                               context.textStyles.textPrimaryFontMedium.copyWith(
-                            fontSize: 14,
+                            fontSize: 16,
                             color: context.colors.primary,
                           ),
                         ),

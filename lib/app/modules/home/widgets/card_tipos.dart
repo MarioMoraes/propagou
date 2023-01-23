@@ -20,7 +20,7 @@ class CardTipos extends StatelessWidget {
         height: 80,
         width: 80,
         decoration: BoxDecoration(
-          color: context.colors.primary.withOpacity(0.1),
+          color: Colors.white,
           border: Border.all(color: Colors.grey.withOpacity(0.5)),
           borderRadius: BorderRadius.circular(5),
         ),

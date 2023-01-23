@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:propagou/app/modules/provedores/controller/steps_state.dart';
 
 import 'steps/one_page.dart';
 import 'steps/three_page.dart';
 import 'steps/two_page.dart';
 
 class ProvedorPage extends StatefulWidget {
-  const ProvedorPage({Key? key}) : super(key: key);
+  final StepsController controller;
+
+  const ProvedorPage({Key? key, required this.controller}) : super(key: key);
 
   @override
   State<ProvedorPage> createState() => _ProvedorPageState();
@@ -33,7 +36,7 @@ class _ProvedorPageState extends State<ProvedorPage> {
 
           switch (route) {
             case '/one':
-              page = const OnePage();
+              page = OnePage(stepsController: widget.controller);
               break;
             case '/two':
               page = const TwoPage();

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:propagou/app/core/styles/colors_app.dart';
+import 'package:propagou/app/core/widgets/custom_text_form_field.dart';
+import 'package:propagou/app/modules/provedores/controller/steps_state.dart';
 
 class OnePage extends StatefulWidget {
-  const OnePage({Key? key}) : super(key: key);
+  final StepsController stepsController;
+
+  const OnePage({Key? key, required this.stepsController}) : super(key: key);
 
   @override
   State<OnePage> createState() => _OnePageState();
@@ -33,9 +37,9 @@ class _OnePageState extends State<OnePage> {
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Text(
-                          'Informe Seu Dados',
+                          'Informe Seu Dados Pessoais',
                           style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 16,
                               color: context.colors.primary,
                               fontWeight: FontWeight.w300),
                         ),
@@ -49,75 +53,34 @@ class _OnePageState extends State<OnePage> {
                     // TextFormField
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                      child: TextFormField(
+                      child: CustomTextFormField(
                         controller: _emailEC,
-                        decoration: const InputDecoration(
-                          isDense: true,
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
-                          hintText: 'Nome ou Razão Social',
-                        ),
+                        showIcon: false,
+                        hint: 'Nome ou Razão Social',
+                        onChange: (value) {},
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                      child: CustomTextFormField(
+                        controller: _emailEC,
+                        showIcon: false,
+                        hint: 'CEP',
+                        onChange: (value) {},
+                      ),
                     ),
 
-                    // TextFormField
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                      child: TextFormField(
-                        controller: _passwordEC,
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.never,
-                            hintText: 'Endereço'),
-                      ),
-                    ),
                     const SizedBox(
                       height: 10,
                     ),
-                    // TextFormField
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                      child: TextFormField(
-                        controller: _passwordEC,
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.never,
-                            hintText: 'Cidade'),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    // TextFormField
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                      child: TextFormField(
-                        controller: _passwordEC,
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.never,
-                            hintText: 'Bairro'),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    // TextFormField
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                      child: TextFormField(
-                        controller: _passwordEC,
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.never,
-                            hintText: 'Telefone'),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    ElevatedButton(
+                        onPressed: () {
+                          widget.stepsController.getCep('37704280');
+                        },
+                        child: const Text('Buscar CEP'))
                   ],
                 ),
               ),

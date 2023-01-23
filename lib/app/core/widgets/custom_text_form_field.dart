@@ -28,43 +28,41 @@ class CustomTextFormField extends StatelessWidget {
     return ValueListenableBuilder<bool>(
       valueListenable: _obscureTextVN,
       builder: (_, obscureTextVNValue, child) {
-        return Expanded(
-          child: TextFormField(
-            onFieldSubmitted: (value) => onChange(value),
-            controller: controller,
-            validator: validator,
-            obscureText: obscureTextVNValue,
-            decoration: InputDecoration(
-                filled: true,
-                fillColor: context.colors.background,
-                isDense: true,
-                hintText: hint,
-                hintStyle: const TextStyle(
-                  color: Colors.black54,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 14.0,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(width: 0, color: Colors.white),
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(width: 0, color: Colors.white),
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                prefixIcon: showIcon ? Icon(icon, size: 25) : null,
-                suffixIcon: obscureText
-                    ? IconButton(
-                        onPressed: () {
-                          _obscureTextVN.value = !obscureTextVNValue;
-                        },
-                        icon: Icon(
-                          obscureTextVNValue ? Icons.lock : Icons.lock_open,
-                          color: Colors.black,
-                        ),
-                      )
-                    : null),
-          ),
+        return TextFormField(
+          onFieldSubmitted: (value) => onChange(value),
+          controller: controller,
+          validator: validator,
+          obscureText: obscureTextVNValue,
+          decoration: InputDecoration(
+              filled: true,
+              fillColor: context.colors.background.withOpacity(0.5),
+              isDense: true,
+              hintText: hint,
+              hintStyle: const TextStyle(
+                color: Colors.black54,
+                fontWeight: FontWeight.w300,
+                fontSize: 14.0,
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(width: 0, color: Colors.white),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 2, color: context.colors.primary),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              prefixIcon: showIcon ? Icon(icon, size: 25) : null,
+              suffixIcon: obscureText
+                  ? IconButton(
+                      onPressed: () {
+                        _obscureTextVN.value = !obscureTextVNValue;
+                      },
+                      icon: Icon(
+                        obscureTextVNValue ? Icons.lock : Icons.lock_open,
+                        color: Colors.black,
+                      ),
+                    )
+                  : null),
         );
       },
     );
