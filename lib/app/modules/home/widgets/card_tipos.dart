@@ -29,11 +29,11 @@ class CardTipos extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(
-              height: 7,
+              height: 6,
             ),
-            Image.asset('assets/images/$icon', fit: BoxFit.cover, height: 35),
+            Image.asset('assets/images/$icon', fit: BoxFit.cover, height: 30),
             const SizedBox(
-              height: 7,
+              height: 8,
             ),
             Text(
               descricao,
