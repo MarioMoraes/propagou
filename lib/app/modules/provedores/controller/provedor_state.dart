@@ -24,7 +24,17 @@ class ProvedorState extends Equatable {
 
   ProvedorState.initial()
       : this._(
-          cep: CepModel(),
+          cep: CepModel(
+              cep: '',
+              logradouro: '',
+              complemento: '',
+              bairro: '',
+              localidade: '',
+              uf: '',
+              ibge: '',
+              gia: '',
+              ddd: '',
+              siafi: ''),
           status: SearchStatus.initial,
         );
 
