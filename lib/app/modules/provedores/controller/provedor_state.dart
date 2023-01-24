@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:propagou/app/models/cep_model.dart';
 import 'package:propagou/app/service/provedores/cep/cep_service.dart';
 
-part 'steps_controller.dart';
+part 'provedor_controller.dart';
 
 enum SearchStatus {
   initial,
@@ -13,16 +13,16 @@ enum SearchStatus {
   failure,
 }
 
-class StepsState extends Equatable {
+class ProvedorState extends Equatable {
   final CepModel cep;
   final SearchStatus status;
 
-  const StepsState._({
+  const ProvedorState._({
     required this.cep,
     required this.status,
   });
 
-  StepsState.initial()
+  ProvedorState.initial()
       : this._(
           cep: CepModel(),
           status: SearchStatus.initial,
@@ -31,11 +31,11 @@ class StepsState extends Equatable {
   @override
   List<Object?> get props => [cep, status];
 
-  StepsState copyWith({
+  ProvedorState copyWith({
     CepModel? cep,
     SearchStatus? status,
   }) {
-    return StepsState._(
+    return ProvedorState._(
       cep: cep ?? this.cep,
       status: status ?? this.status,
     );

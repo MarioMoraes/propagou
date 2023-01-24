@@ -2,8 +2,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 import 'package:propagou/app/modules/home/controller/home_state.dart';
 import 'package:propagou/app/modules/home/home_page.dart';
-import 'package:propagou/app/modules/provedores/controller/steps_state.dart';
-import 'package:propagou/app/modules/provedores/provedor_page.dart';
 import 'package:propagou/app/repository/tipos/tipo_repository.dart';
 import 'package:propagou/app/repository/tipos/tipo_repository_impl.dart';
 import 'package:propagou/app/service/tipos/tipo_service.dart';
@@ -15,9 +13,7 @@ class HomeModule extends Module {
         Bind.lazySingleton<TipoRepository>((i) => TipoRepositoryImpl()),
         Bind.lazySingleton<TipoService>(
             (i) => TipoServiceImpl(repository: i())),
-        BlocBind.lazySingleton((i) => StepsController(cepService: i())),
-        Bind.lazySingleton<TipoService>(
-            (i) => TipoServiceImpl(repository: i())),
+        BlocBind.lazySingleton((i) => HomeController(tipoService: i())),
       ];
 
   @override
@@ -26,12 +22,6 @@ class HomeModule extends Module {
           Modular.initialRoute,
           child: (_, args) => HomePage(
             homeController: Modular.get<HomeController>(),
-          ),
-        ),
-        ChildRoute(
-          '/provedor',
-          child: (_, args) => ProvedorPage(
-            controller: Modular.get<StepsController>(),
           ),
         ),
       ];

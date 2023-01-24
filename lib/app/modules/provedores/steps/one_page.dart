@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:propagou/app/core/styles/colors_app.dart';
 import 'package:propagou/app/core/widgets/custom_text_form_field.dart';
-import 'package:propagou/app/modules/provedores/controller/steps_state.dart';
+import 'package:propagou/app/modules/provedores/controller/provedor_state.dart';
 
 class OnePage extends StatefulWidget {
-  final StepsController stepsController;
+  final ProvedorController provedorController;
 
-  const OnePage({Key? key, required this.stepsController}) : super(key: key);
+  const OnePage({Key? key, required this.provedorController}) : super(key: key);
 
   @override
   State<OnePage> createState() => _OnePageState();
@@ -14,8 +14,8 @@ class OnePage extends StatefulWidget {
 
 class _OnePageState extends State<OnePage> {
   final _formKey = GlobalKey<FormState>();
-  final _emailEC = TextEditingController();
-  final _passwordEC = TextEditingController();
+  final _nomeEC = TextEditingController();
+  final _cepEC = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class _OnePageState extends State<OnePage> {
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                       child: CustomTextFormField(
-                        controller: _emailEC,
+                        controller: _nomeEC,
                         showIcon: false,
                         hint: 'Nome ou Razão Social',
                         onChange: (value) {},
@@ -66,7 +66,7 @@ class _OnePageState extends State<OnePage> {
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                       child: CustomTextFormField(
-                        controller: _emailEC,
+                        controller: _cepEC,
                         showIcon: false,
                         hint: 'CEP',
                         onChange: (value) {},
@@ -74,13 +74,16 @@ class _OnePageState extends State<OnePage> {
                     ),
 
                     const SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
-                    ElevatedButton(
-                        onPressed: () {
-                          widget.stepsController.getCep('37704280');
-                        },
-                        child: const Text('Buscar CEP'))
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0, right: 20),
+                      child: ElevatedButton(
+                          onPressed: () {
+                            widget.provedorController.getCep(_cepEC.text);
+                          },
+                          child: const Text('Buscar CEP')),
+                    )
                   ],
                 ),
               ),

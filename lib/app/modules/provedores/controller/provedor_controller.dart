@@ -1,11 +1,11 @@
-part of 'steps_state.dart';
+part of 'provedor_state.dart';
 
-class StepsController extends Cubit<StepsState> {
+class ProvedorController extends Cubit<ProvedorState> {
   final CepService _cepService;
 
-  StepsController({required CepService cepService})
+  ProvedorController({required CepService cepService})
       : _cepService = cepService,
-        super(StepsState.initial());
+        super(ProvedorState.initial());
 
   Future<void> getCep(String cep) async {
     emit(state.copyWith(status: SearchStatus.loading));
