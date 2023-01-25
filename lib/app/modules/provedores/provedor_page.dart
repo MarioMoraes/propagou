@@ -24,6 +24,7 @@ class _ProvedorPageState extends State<ProvedorPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Cadastro'),
         toolbarHeight: 80,
         centerTitle: true,
@@ -39,10 +40,10 @@ class _ProvedorPageState extends State<ProvedorPage> {
               page = OnePage(provedorController: widget.controller);
               break;
             case '/two':
-              page = const TwoPage();
+              page = TwoPage(provedorController: widget.controller);
               break;
             case '/three':
-              page = const ThreePage();
+              page = ThreePage(provedorController: widget.controller);
               break;
             default:
               return null;
