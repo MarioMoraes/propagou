@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:propagou/app/models/register_model.dart';
 import 'package:propagou/app/modules/provedores/controller/provedor_state.dart';
-import 'package:validatorless/validatorless.dart';
 
 import '../../../core/widgets/box_title.dart';
-import '../../../core/widgets/my_widget.dart';
 
 class ThreePage extends StatefulWidget {
   final ProvedorController provedorController;
@@ -16,6 +15,8 @@ class ThreePage extends StatefulWidget {
 }
 
 class _ThreePageState extends State<ThreePage> {
+  late RegisterModel registerModel;
+
   final _formKey = GlobalKey<FormState>();
 
   final _enderecoEC = TextEditingController();
@@ -26,6 +27,10 @@ class _ThreePageState extends State<ThreePage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      registerModel =
+          ModalRoute.of(context)?.settings.arguments as RegisterModel;
+    });
   }
 
   @override
@@ -51,16 +56,8 @@ class _ThreePageState extends State<ThreePage> {
                     title: 'Dados Pessoais',
                     subTitle: 'Informe Seu Endereço',
                   ),
-                  const SizedBox(height: 20),
-                  MyWidget(
-                    ec: _enderecoEC,
-                    hint: 'Endereço',
-                    validator: Validatorless.multiple([
-                      Validatorless.required('Campo Obrigatório'),
-                      Validatorless.min(8, 'Cep Inválido')
-                    ]),
-                  ),
-                  const SizedBox(height: 5),
+                  Text(registerModel.nome!),
+                  Text(registerModel.cep!),
                 ],
               ),
             ),
@@ -81,9 +78,7 @@ class _ThreePageState extends State<ThreePage> {
                           final valid =
                               _formKey.currentState?.validate() ?? false;
 
-                          if (valid) {
-                            Navigator.pushNamed(context, '/three');
-                          }
+                          if (valid) {}
                         },
                         child: const Text('AVANÇAR'),
                       ),

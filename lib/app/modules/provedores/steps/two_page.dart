@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:propagou/app/models/register_model.dart';
 import 'package:propagou/app/modules/provedores/controller/provedor_state.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -15,12 +16,23 @@ class TwoPage extends StatefulWidget {
 }
 
 class _TwoPageState extends State<TwoPage> {
+  late RegisterModel registerModel;
+
   final _formKey = GlobalKey<FormState>();
   final _cepEC = TextEditingController();
   final _enderecoEC = TextEditingController();
   final _complementoEC = TextEditingController();
   final _bairroEC = TextEditingController();
   final _cidadeEC = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      registerModel =
+          ModalRoute.of(context)?.settings.arguments as RegisterModel;
+    });
+  }
 
   @override
   void dispose() {
@@ -73,7 +85,10 @@ class _TwoPageState extends State<TwoPage> {
                               _formKey.currentState?.validate() ?? false;
 
                           if (valid) {
-                            Navigator.pushNamed(context, '/three');
+                            final model =
+                                registerModel.copyWith(cep: _cepEC.text);
+                            Navigator.pushNamed(context, '/three',
+                                arguments: model);
                           }
                         },
                         child: const Text('AVANÇAR'),

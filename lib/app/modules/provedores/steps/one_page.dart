@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:propagou/app/core/widgets/box_title.dart';
+import 'package:propagou/app/models/register_model.dart';
 import 'package:propagou/app/modules/provedores/controller/provedor_state.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:validatorless/validatorless.dart';
@@ -87,7 +88,9 @@ class _OnePageState extends State<OnePage> {
                                 _formKey.currentState?.validate() ?? false;
 
                             if (valid) {
-                              Navigator.pushNamed(context, '/two');
+                              final model = RegisterModel(nome: _nomeEC.text);
+                              Navigator.pushNamed(context, '/two',
+                                  arguments: model);
                             }
                           },
                           child: const Text('AVANÇAR'),
