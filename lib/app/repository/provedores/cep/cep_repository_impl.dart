@@ -12,7 +12,6 @@ class CepRepositoryImpl extends CepRepository {
       final response = await _dio.get('https://viacep.com.br/ws/$cep/json/');
 
       if (response.statusCode == 200) {
-        print(response.data);
         return CepModel.fromMap(response.data);
       }
     } on DioError {

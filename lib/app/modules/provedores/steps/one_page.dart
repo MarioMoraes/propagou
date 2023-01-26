@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:propagou/app/core/widgets/box_title.dart';
+import 'package:propagou/app/core/widgets/custom_input.dart';
 import 'package:propagou/app/models/register_model.dart';
 import 'package:propagou/app/modules/provedores/controller/provedor_state.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:validatorless/validatorless.dart';
-
-import '../../../core/widgets/my_widget.dart';
 
 class OnePage extends StatefulWidget {
   final ProvedorController provedorController;
@@ -59,7 +58,7 @@ class _OnePageState extends State<OnePage> {
                       subTitle: 'Informe Seu Nome ou Razão Social',
                     ),
                     const SizedBox(height: 20),
-                    MyWidget(
+                    CustomInput(
                       ec: _nomeEC,
                       hint: 'Nome ou Razão Social',
                       validator: Validatorless.multiple([
@@ -89,8 +88,6 @@ class _OnePageState extends State<OnePage> {
 
                             if (valid) {
                               var model = RegisterModel(nome: _nomeEC.text);
-
-                              print(model);
 
                               Navigator.pushNamed(context, '/two',
                                   arguments: model);

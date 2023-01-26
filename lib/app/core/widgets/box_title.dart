@@ -10,8 +10,8 @@ class BoxTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return // Titulo
-        Container(
+    return Container(
+      width: MediaQuery.of(context).size.width,
       height: 60,
       decoration: BoxDecoration(
         color: context.colors.background,

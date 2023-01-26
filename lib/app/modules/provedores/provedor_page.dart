@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:propagou/app/modules/provedores/controller/provedor_state.dart';
+import 'package:propagou/app/modules/provedores/steps/four_page.dart';
 
 import 'steps/one_page.dart';
 import 'steps/three_page.dart';
@@ -45,10 +46,17 @@ class _ProvedorPageState extends State<ProvedorPage> {
             case '/three':
               page = ThreePage(provedorController: widget.controller);
               break;
+            case '/four':
+              page = const FourPage();
+              break;
+
             default:
               return null;
           }
-          return MaterialPageRoute(builder: (context) => page);
+          return MaterialPageRoute(
+            builder: (context) => page,
+            settings: settings,
+          );
         },
       ),
     );

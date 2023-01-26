@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:propagou/app/core/styles/colors_app.dart';
-import 'package:propagou/app/core/styles/text_styles.dart';
 import 'package:propagou/app/models/tipo_model.dart';
 import 'package:propagou/app/modules/home/controller/home_state.dart';
 import 'package:propagou/app/modules/home/widgets/card_tipos.dart';
@@ -81,17 +80,6 @@ class _HomePageState extends State<HomePage> {
                 sliver: SliverList(
                   delegate: SliverChildListDelegate(
                     [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
-                        child: Text(
-                          'Categorias',
-                          style:
-                              context.textStyles.textPrimaryFontMedium.copyWith(
-                            fontSize: 16,
-                            color: context.colors.primary,
-                          ),
-                        ),
-                      ),
                       SizedBox(
                         width: double.infinity,
                         height: 80,

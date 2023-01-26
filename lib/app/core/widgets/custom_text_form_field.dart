@@ -10,6 +10,7 @@ class CustomTextFormField extends StatelessWidget {
   final IconData? icon;
   final bool showIcon;
   final void Function(String) onChange;
+  final FocusNode? myFocus;
 
   CustomTextFormField({
     Key? key,
@@ -20,6 +21,7 @@ class CustomTextFormField extends StatelessWidget {
     this.icon,
     this.showIcon = false,
     required this.onChange,
+    this.myFocus,
   })  : _obscureTextVN = ValueNotifier<bool>(obscureText),
         super(key: key);
 
@@ -30,6 +32,7 @@ class CustomTextFormField extends StatelessWidget {
       builder: (_, obscureTextVNValue, child) {
         return TextFormField(
           onFieldSubmitted: (value) => onChange(value),
+          focusNode: myFocus,
           controller: controller,
           validator: validator,
           obscureText: obscureTextVNValue,

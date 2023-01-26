@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:propagou/app/models/register_model.dart';
 import 'package:propagou/app/modules/provedores/controller/provedor_state.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../../../core/widgets/box_title.dart';
-import '../../../core/widgets/my_widget.dart';
+import '../../../core/widgets/custom_input.dart';
+import '../../../core/widgets/custom_show.dart';
+import '../../../models/cep_model.dart';
 
 class TwoPage extends StatefulWidget {
   final ProvedorController provedorController;
@@ -20,19 +23,18 @@ class _TwoPageState extends State<TwoPage> {
 
   final _formKey = GlobalKey<FormState>();
   final _cepEC = TextEditingController();
-  final _enderecoEC = TextEditingController();
-  final _complementoEC = TextEditingController();
-  final _bairroEC = TextEditingController();
-  final _cidadeEC = TextEditingController();
+  final _numeroEC = TextEditingController();
+
+  late FocusNode myFocusNode;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      print('aqui');
       registerModel =
           ModalRoute.of(context)?.settings.arguments as RegisterModel;
     });
+    myFocusNode = FocusNode();
   }
 
   @override
@@ -56,7 +58,7 @@ class _TwoPageState extends State<TwoPage> {
                     subTitle: 'Informe Seu CEP',
                   ),
                   const SizedBox(height: 20),
-                  MyWidget(
+                  CustomInput(
                     ec: _cepEC,
                     hint: 'CEP',
                     validator: Validatorless.multiple([
@@ -65,11 +67,49 @@ class _TwoPageState extends State<TwoPage> {
                     ]),
                   ),
                   const SizedBox(height: 5),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0, right: 20),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: ElevatedButton(
+                          onPressed: () async {
+                            await widget.provedorController.getCep(_cepEC.text);
+                            myFocusNode.requestFocus();
+                          },
+                          child: const Text('Buscar CEP')),
+                    ),
+                  ),
+                  BlocSelector<ProvedorController, ProvedorState, CepModel>(
+                    bloc: widget.provedorController,
+                    selector: (state) => state.cep,
+                    builder: (context, cep) {
+                      return Column(
+                        children: [
+                          const SizedBox(height: 10),
+                          CustomShow(ec: cep.logradouro),
+                          const SizedBox(height: 10),
+                          CustomInput(
+                            focus: myFocusNode,
+                            ec: _numeroEC,
+                            hint: 'Número',
+                            validator: Validatorless.multiple([
+                              Validatorless.required('Número Obrigatório'),
+                            ]),
+                          ),
+                          const SizedBox(height: 10),
+                          CustomShow(ec: cep.bairro),
+                          const SizedBox(height: 10),
+                          CustomShow(ec: cep.localidade),
+                          const SizedBox(height: 10),
+                        ],
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
 
-            // Mensagem Rodape
+            // Rodape
             SliverFillRemaining(
               hasScrollBody: false,
               child: Column(
@@ -86,10 +126,10 @@ class _TwoPageState extends State<TwoPage> {
                               _formKey.currentState?.validate() ?? false;
 
                           if (valid) {
-                            var model =
-                                registerModel.copyWith(cep: _cepEC.text);
-                            Navigator.pushNamed(context, '/three',
+/*                             var model = RegisterModel(nome: _nomeEC.text);
+                            Navigator.pushNamed(context, '/two',
                                 arguments: model);
+ */
                           }
                         },
                         child: const Text('AVANÇAR'),
