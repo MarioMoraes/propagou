@@ -29,6 +29,7 @@ class _TwoPageState extends State<TwoPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      print('aqui');
       registerModel =
           ModalRoute.of(context)?.settings.arguments as RegisterModel;
     });
@@ -85,7 +86,7 @@ class _TwoPageState extends State<TwoPage> {
                               _formKey.currentState?.validate() ?? false;
 
                           if (valid) {
-                            final model =
+                            var model =
                                 registerModel.copyWith(cep: _cepEC.text);
                             Navigator.pushNamed(context, '/three',
                                 arguments: model);

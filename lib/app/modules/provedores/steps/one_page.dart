@@ -88,7 +88,10 @@ class _OnePageState extends State<OnePage> {
                                 _formKey.currentState?.validate() ?? false;
 
                             if (valid) {
-                              final model = RegisterModel(nome: _nomeEC.text);
+                              var model = RegisterModel(nome: _nomeEC.text);
+
+                              print(model);
+
                               Navigator.pushNamed(context, '/two',
                                   arguments: model);
                             }

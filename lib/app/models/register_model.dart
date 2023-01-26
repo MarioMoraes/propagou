@@ -16,4 +16,7 @@ class RegisterModel {
       cep: cep ?? this.cep,
     );
   }
+
+  @override
+  String toString() => 'RegisterModel(nome: $nome, cep: $cep)';
 }
