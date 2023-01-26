@@ -25,6 +25,11 @@ class _TwoPageState extends State<TwoPage> {
   final _cepEC = TextEditingController();
   final _numeroEC = TextEditingController();
 
+  String? endereco;
+  String? bairro;
+  String? cidade;
+  CepModel? dados;
+
   late FocusNode myFocusNode;
 
   @override
@@ -41,6 +46,8 @@ class _TwoPageState extends State<TwoPage> {
   void dispose() {
     super.dispose();
     _cepEC.dispose();
+    _numeroEC.dispose();
+    myFocusNode.dispose();
   }
 
   @override
@@ -83,6 +90,8 @@ class _TwoPageState extends State<TwoPage> {
                     bloc: widget.provedorController,
                     selector: (state) => state.cep,
                     builder: (context, cep) {
+                      dados = cep;
+
                       return Column(
                         children: [
                           const SizedBox(height: 10),
@@ -126,10 +135,15 @@ class _TwoPageState extends State<TwoPage> {
                               _formKey.currentState?.validate() ?? false;
 
                           if (valid) {
-/*                             var model = RegisterModel(nome: _nomeEC.text);
-                            Navigator.pushNamed(context, '/two',
+                            var model = registerModel.copyWith(
+                                endereco: dados?.logradouro,
+                                cep: _cepEC.text,
+                                numero: _numeroEC.text,
+                                bairro: dados?.bairro,
+                                cidade: dados?.localidade);
+
+                            Navigator.pushNamed(context, '/three',
                                 arguments: model);
- */
                           }
                         },
                         child: const Text('AVANÇAR'),

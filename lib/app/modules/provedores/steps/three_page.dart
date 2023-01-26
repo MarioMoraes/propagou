@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:propagou/app/core/widgets/custom_input.dart';
 import 'package:propagou/app/models/register_model.dart';
 import 'package:propagou/app/modules/provedores/controller/provedor_state.dart';
+import 'package:validatorless/validatorless.dart';
 
 import '../../../core/widgets/box_title.dart';
 
@@ -18,11 +20,7 @@ class _ThreePageState extends State<ThreePage> {
   late RegisterModel registerModel;
 
   final _formKey = GlobalKey<FormState>();
-
-  final _enderecoEC = TextEditingController();
-  final _complementoEC = TextEditingController();
-  final _bairroEC = TextEditingController();
-  final _cidadeEC = TextEditingController();
+  final _docEC = TextEditingController();
 
   @override
   void initState() {
@@ -36,10 +34,7 @@ class _ThreePageState extends State<ThreePage> {
   @override
   void dispose() {
     super.dispose();
-    _enderecoEC.dispose();
-    _complementoEC.dispose();
-    _bairroEC.dispose();
-    _cidadeEC.dispose();
+    _docEC.dispose();
   }
 
   @override
@@ -54,10 +49,19 @@ class _ThreePageState extends State<ThreePage> {
                 [
                   const BoxTitle(
                     title: 'Dados Pessoais',
-                    subTitle: 'Informe Seu Endereço',
+                    subTitle: 'Informe CPF ou CPNJ',
                   ),
-                  Text(registerModel.nome ?? ''),
-                  Text(registerModel.cep ?? ''),
+                  const SizedBox(height: 10),
+                  CustomInput(
+                    ec: _docEC,
+                    hint: 'CPF/CNPJ',
+                    validator: Validatorless.multiple(
+                      [
+                        Validatorless.cnpj('CNPJ Invalido'),
+                        Validatorless.cpf('CPF Invalido'),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
