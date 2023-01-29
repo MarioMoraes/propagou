@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:propagou/app/core/styles/colors_app.dart';
 
 class CardTipos extends StatelessWidget {
   final String id;
@@ -17,8 +16,8 @@ class CardTipos extends StatelessWidget {
       onTap: () => Modular.to.pushNamed('/subtipos',
           arguments: {'id': id, 'descricao': descricao, 'icon': icon}),
       child: Container(
-        height: 80,
-        width: 80,
+        height: 100,
+        width: 100,
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(color: Colors.grey.withOpacity(0.5)),
@@ -28,10 +27,13 @@ class CardTipos extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 6,
+            Image.asset(
+              'assets/images/banner2.png',
+              fit: BoxFit.cover,
+              height: 90,
+              width: 90,
             ),
-            Image.asset('assets/images/$icon', fit: BoxFit.cover, height: 30),
+            /*
             const SizedBox(
               height: 8,
             ),
@@ -43,6 +45,7 @@ class CardTipos extends StatelessWidget {
                 color: context.colors.primary,
               ),
             ),
+            */
           ],
         ),
       ),

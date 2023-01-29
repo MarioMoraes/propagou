@@ -82,20 +82,22 @@ class _HomePageState extends State<HomePage> {
                     [
                       SizedBox(
                         width: double.infinity,
-                        height: 80,
+                        height: 100,
                         child: ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: list
-                                .map((e) => Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 8.0),
-                                      child: CardTipos(
-                                        id: e.id,
-                                        descricao: e.descricao,
-                                        icon: e.icon,
-                                      ),
-                                    ))
-                                .toList()),
+                          scrollDirection: Axis.horizontal,
+                          children: list
+                              .map(
+                                (e) => Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                  child: CardTipos(
+                                    id: e.id,
+                                    descricao: e.descricao,
+                                    icon: e.icon,
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        ),
                       ),
                     ],
                   ),
