@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:propagou/app/core/styles/colors_app.dart';
-import 'package:propagou/app/models/tipo_model.dart';
 import 'package:propagou/app/modules/home/controller/home_state.dart';
 import 'package:propagou/app/modules/home/widgets/card_tipos.dart';
 
+import '../../core/enums/search_status.dart';
+import '../../models/tipos_model.dart';
 import 'widgets/home_filter.dart';
 
 class HomePage extends StatefulWidget {
@@ -35,9 +36,9 @@ class _HomePageState extends State<HomePage> {
             expandedHeight: 80,
             title: Text('PROPAGOU'),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: Column(
-              children: const [
+              children: [
                 SizedBox(
                   height: 8,
                 ),
@@ -68,7 +69,7 @@ class _HomePageState extends State<HomePage> {
               );
             },
           ),
-          BlocSelector<HomeController, HomeState, List<TipoModel>>(
+          BlocSelector<HomeController, HomeState, List<TiposModel>>(
             bloc: widget.homeController,
             selector: (state) => state.listTipos,
             builder: (context, list) {
@@ -92,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                                   child: CardTipos(
                                     id: e.id,
                                     descricao: e.descricao,
-                                    icon: e.icon,
+                                    icon: '',
                                   ),
                                 ),
                               )

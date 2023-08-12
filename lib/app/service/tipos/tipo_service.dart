@@ -1,5 +1,5 @@
-import '../../models/tipo_model.dart';
+import 'package:propagou/app/models/tipos_model.dart';
 
 abstract class TipoService {
-  Future<List<TipoModel>> getTipos();
+  Future<List<TiposModel>> getTipos();
 }

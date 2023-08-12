@@ -1,20 +1,14 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:propagou/app/models/tipo_model.dart';
+import 'package:propagou/app/models/tipos_model.dart';
 import 'package:propagou/app/service/tipos/tipo_service.dart';
+
+import '../../../core/enums/search_status.dart';
 
 part 'home_controller.dart';
 
-enum SearchStatus {
-  initial,
-  loading,
-  empty,
-  completed,
-  failure,
-}
-
 class HomeState extends Equatable {
-  final List<TipoModel> listTipos;
+  final List<TiposModel> listTipos;
   final SearchStatus status;
 
   const HomeState._({
@@ -32,7 +26,7 @@ class HomeState extends Equatable {
   List<Object?> get props => [listTipos, status];
 
   HomeState copyWith({
-    List<TipoModel>? listTipos,
+    List<TiposModel>? listTipos,
     SearchStatus? status,
   }) {
     return HomeState._(

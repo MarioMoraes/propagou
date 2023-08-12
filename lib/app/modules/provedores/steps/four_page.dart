@@ -17,7 +17,6 @@ class _FourPageState extends State<FourPage> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       registerModel =
           ModalRoute.of(context)?.settings.arguments as RegisterModel;
-      print(registerModel);
     });
   }
 
