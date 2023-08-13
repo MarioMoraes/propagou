@@ -21,8 +21,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
+    _fetchAll();
     super.initState();
-    widget.homeController.getTipos();
+  }
+
+  Future<void> _fetchAll() async {
+    await widget.homeController.getTipos();
+    await widget.homeController.getSubTipos();
   }
 
   @override

@@ -42,9 +42,9 @@ class _SubtiposPageState extends State<SubtiposPage> {
                   .copyWith(color: context.colors.secondary, fontSize: 20),
             ),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: Column(
-              children: const [
+              children: [
                 // StickerStatusFilter(filterSelected: filterSelected),
                 // StickerGroupFilter(countries: countries),
               ],
@@ -84,7 +84,7 @@ class _SubtiposPageState extends State<SubtiposPage> {
                       list
                           .map(
                             (e) => CardSubtipo(
-                              descricao: e.descricao,
+                              descricao: e.grupo,
                             ),
                           )
                           .toList(),

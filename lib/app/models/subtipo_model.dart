@@ -3,19 +3,19 @@ import 'dart:convert';
 class SubTipoModel {
   String id;
   String grupoId;
-  String descricao;
+  String grupo;
 
   SubTipoModel({
     required this.id,
     required this.grupoId,
-    required this.descricao,
+    required this.grupo,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
       'grupo_id': grupoId,
-      'descricao': descricao,
+      'grupo': grupo,
     };
   }
 
@@ -23,7 +23,7 @@ class SubTipoModel {
     return SubTipoModel(
       id: map['id'] as String,
       grupoId: map['grupo_id'] as String,
-      descricao: map['descricao'] as String,
+      grupo: map['grupo'] as String,
     );
   }
 
