@@ -12,11 +12,13 @@ class HomeState extends Equatable {
   final List<TiposModel> listTipos;
   final List<SubTipoModel> listSubTipos;
   final SearchStatus status;
+  final String itemSelected;
 
   const HomeState._({
     required this.listTipos,
     required this.listSubTipos,
     required this.status,
+    required this.itemSelected,
   });
 
   HomeState.initial()
@@ -24,20 +26,23 @@ class HomeState extends Equatable {
           listTipos: [],
           listSubTipos: [],
           status: SearchStatus.initial,
+          itemSelected: '1',
         );
 
   @override
-  List<Object?> get props => [listTipos, listSubTipos, status];
+  List<Object?> get props => [listTipos, listSubTipos, itemSelected, status];
 
   HomeState copyWith({
     List<TiposModel>? listTipos,
     List<SubTipoModel>? listSubTipos,
     SearchStatus? status,
+    String? itemSelected,
   }) {
     return HomeState._(
       listTipos: listTipos ?? this.listTipos,
       listSubTipos: listSubTipos ?? this.listSubTipos,
       status: status ?? this.status,
+      itemSelected: itemSelected ?? this.itemSelected,
     );
   }
 }

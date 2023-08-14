@@ -3,22 +3,16 @@ import 'dart:convert';
 class TiposModel {
   String id;
   String descricao;
-  String grupoId;
-  String grupo;
 
   TiposModel({
     required this.id,
     required this.descricao,
-    required this.grupoId,
-    required this.grupo,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
       'descricao': descricao,
-      'grupo_id': grupoId,
-      'grupo': grupo,
     };
   }
 
@@ -26,8 +20,6 @@ class TiposModel {
     return TiposModel(
       id: map['id'] as String,
       descricao: map['descricao'] as String,
-      grupoId: map['grupo_id'] as String,
-      grupo: map['grupo'] as String,
     );
   }
 

@@ -3,5 +3,6 @@ enum SearchStatus {
   loading,
   empty,
   completed,
+  filtered,
   failure,
 }

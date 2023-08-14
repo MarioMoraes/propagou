@@ -42,4 +42,15 @@ class HomeController extends Cubit<HomeState> {
       ));
     }
   }
+
+  void changeItem(String id) {
+    emit(state.copyWith(itemSelected: '1', status: SearchStatus.loading));
+    emit(state.copyWith(
+      itemSelected: id,
+      listSubTipos: state.listSubTipos,
+      status: SearchStatus.filtered,
+    ));
+  }
+
+  String get itemSelected => state.itemSelected;
 }

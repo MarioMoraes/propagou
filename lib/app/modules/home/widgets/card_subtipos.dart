@@ -1,35 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:propagou/app/core/styles/colors_app.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
-import '../controller/home_state.dart';
-
-class CardTipos extends StatelessWidget {
+class CardSubTipos extends StatelessWidget {
   final String id;
   final String descricao;
   final String icon;
-  final HomeController homeController;
 
-  const CardTipos({
-    Key? key,
-    required this.descricao,
-    required this.icon,
-    required this.id,
-    required this.homeController,
-  }) : super(key: key);
+  const CardSubTipos(
+      {Key? key, required this.descricao, required this.icon, required this.id})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        homeController.changeItem(id);
-      },
+      onTap: () => Modular.to.pushNamed('/subtipos',
+          arguments: {'id': id, 'descricao': descricao, 'icon': icon}),
       child: Container(
-        height: 80,
+        height: 50,
         width: 100,
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(color: Colors.grey.withOpacity(0.5)),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(5),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -37,10 +29,10 @@ class CardTipos extends StatelessWidget {
           children: [
             Text(
               descricao,
-              style: TextStyle(
-                fontSize: 14,
+              style: const TextStyle(
+                fontSize: 10,
                 fontWeight: FontWeight.w300,
-                color: context.colors.primary,
+                color: Colors.black,
               ),
             ),
           ],
