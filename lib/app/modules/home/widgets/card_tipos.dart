@@ -24,7 +24,7 @@ class CardTipos extends StatelessWidget {
         homeController.changeItem(id);
       },
       child: Container(
-        height: 80,
+        height: 40,
         width: 100,
         decoration: BoxDecoration(
           color: Colors.white,

@@ -9,7 +9,6 @@ import 'package:propagou/app/modules/home/widgets/card_tipos.dart';
 import '../../core/enums/search_status.dart';
 import '../../models/tipos_model.dart';
 import 'widgets/card_subtipos.dart';
-import 'widgets/home_filter.dart';
 
 class HomePage extends StatefulWidget {
   final HomeController homeController;
@@ -67,13 +66,7 @@ class _HomePageState extends State<HomePage> {
             ),
             const SliverToBoxAdapter(
               child: Column(
-                children: [
-                  SizedBox(
-                    height: 8,
-                  ),
-                  HomeFilter(),
-                  // StickerGroupFilter(countries: countries),
-                ],
+                children: [],
               ),
             ),
             BlocSelector<HomeController, HomeState, bool>(
@@ -114,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                       [
                         SizedBox(
                           width: double.infinity,
-                          height: 100,
+                          height: 40,
                           child: ListView(
                             scrollDirection: Axis.horizontal,
                             children: list
@@ -147,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                 var idSelected = widget.homeController.itemSelected;
                 return SliverPadding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 15,
+                    horizontal: 8,
                     vertical: 8,
                   ),
                   sliver: SliverList(
@@ -157,23 +150,22 @@ class _HomePageState extends State<HomePage> {
                           width: double.infinity,
                           height: 100,
                           child: Wrap(
-                            spacing: 1.0,
-                            runSpacing: 4.0,
-                            children: list
-                                .where(
-                                    (element) => element.grupoId == idSelected)
-                                .map(
-                                  (e) => Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: CardSubTipos(
-                                      id: e.id,
-                                      descricao: e.grupo,
-                                      icon: '',
+                              spacing: 1.0,
+                              runSpacing: 4.0,
+                              children: list
+                                  .where((element) =>
+                                      element.grupoId == idSelected)
+                                  .map(
+                                    (e) => Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 8.0),
+                                      child: CardSubTipos(
+                                          id: e.id,
+                                          descricao: e.grupo,
+                                          icon: ''),
                                     ),
-                                  ),
-                                )
-                                .toList(),
-                          ),
+                                  )
+                                  .toList()),
                         ),
                       ],
                     ),

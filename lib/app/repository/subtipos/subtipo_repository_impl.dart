@@ -13,7 +13,7 @@ class SubtipoRepositoryImpl extends SubtipoRepository {
   Future<List<SubTipoModel>> getSubTipos(String tipo) async {
     try {
       final response = await _dio.get(
-          'http://23.20.160.129/app/api/subtipos.php',
+          'https://masterbusiness.adm.br/app/api/subtipos_id.php',
           queryParameters: {'grupo_id': tipo});
 
       if (response.statusCode == 200) {
