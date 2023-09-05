@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:propagou/app/core/styles/colors_app.dart';
+
+import '../constants/color_constants.dart';
 
 class BoxTitle extends StatelessWidget {
   final String title;
@@ -13,8 +14,8 @@ class BoxTitle extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 60,
-      decoration: BoxDecoration(
-        color: context.colors.background,
+      decoration: const BoxDecoration(
+        color: ColorConstants.background,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,9 +24,9 @@ class BoxTitle extends StatelessWidget {
             padding: const EdgeInsets.only(top: 10, left: 20),
             child: Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 16,
-                  color: context.colors.primary,
+                  color: ColorConstants.primary,
                   fontWeight: FontWeight.w600),
             ),
           ),
@@ -35,7 +36,7 @@ class BoxTitle extends StatelessWidget {
               subTitle,
               style: TextStyle(
                   fontSize: 12,
-                  color: context.colors.primary.withOpacity(0.7),
+                  color: ColorConstants.primary.withOpacity(0.7),
                   fontWeight: FontWeight.w300),
             ),
           ),

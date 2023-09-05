@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:propagou/app/core/styles/colors_app.dart';
 import 'package:propagou/app/core/styles/text_styles.dart';
+
+import '../../../core/constants/color_constants.dart';
 
 class CardSubtipo extends StatelessWidget {
   final String descricao;
@@ -34,7 +35,7 @@ class CardSubtipo extends StatelessWidget {
             Text(
               descricao,
               style: context.textStyles.textPrimaryFontMedium.copyWith(
-                color: context.colors.primary,
+                color: ColorConstants.primary,
                 fontSize: 16,
               ),
             ),

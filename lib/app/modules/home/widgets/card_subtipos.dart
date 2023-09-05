@@ -21,18 +21,24 @@ class CardSubTipos extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(color: Colors.grey.withOpacity(0.5)),
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              descricao,
-              style: const TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.w300,
-                color: Colors.black,
+            SizedBox(
+              width: 80,
+              child: Center(
+                child: Text(
+                  descricao,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.black,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ),
             ),
           ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:propagou/app/core/styles/colors_app.dart';
+import 'package:propagou/app/core/constants/color_constants.dart';
 import 'package:propagou/app/core/styles/text_styles.dart';
 
 class CustomShow extends StatelessWidget {
@@ -18,7 +18,7 @@ class CustomShow extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: 50,
         decoration: BoxDecoration(
-            color: context.colors.background.withOpacity(0.5),
+            color: ColorConstants.background.withOpacity(0.5),
             borderRadius: BorderRadius.circular(5)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

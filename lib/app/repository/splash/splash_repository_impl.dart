@@ -2,13 +2,14 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:propagou/app/core/exceptions/repository_exception.dart';
 import 'package:propagou/app/models/subtipo_model.dart';
 import 'package:propagou/app/models/tipo_model.dart';
-import 'package:propagou/app/repository/tipos/tipo_repository.dart';
+import 'package:propagou/app/repository/splash/splash_repository.dart';
 
-class TipoRepositoryImpl extends TipoRepository {
-  final _dio = Dio();
+import '../../core/exceptions/repository_exception.dart';
+
+class SplashRepositoryImpl implements SplashRepository {
+  final Dio _dio = Dio();
 
   @override
   Future<List<TipoModel>> getTipos() async {
@@ -22,8 +23,7 @@ class TipoRepositoryImpl extends TipoRepository {
             .toList();
       }
     } on DioError catch (e, s) {
-      log('Erro em Tipo/Subtipo', error: e, stackTrace: s);
-
+      log('Erro Buscando Tipos...', error: e, stackTrace: s);
       throw RepositoryException();
     }
     return [];
@@ -32,15 +32,16 @@ class TipoRepositoryImpl extends TipoRepository {
   @override
   Future<List<SubTipoModel>> getSubTipos() async {
     try {
-      final response = await _dio
-          .get('https://www.masterbusiness.adm.br/app/api/subtipos.php');
+      final response =
+          await _dio.get('https://masterbusiness.adm.br/app/api/subtipos.php');
 
       if (response.statusCode == 200) {
         return jsonDecode(response.data)
             .map<SubTipoModel>((e) => SubTipoModel.fromMap(e))
             .toList();
       }
-    } on DioError {
+    } on DioError catch (e, s) {
+      log('Erro Buscando Subtipos...', error: e, stackTrace: s);
       throw RepositoryException();
     }
     return [];

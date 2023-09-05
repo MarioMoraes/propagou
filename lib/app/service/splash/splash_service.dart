@@ -1,8 +1,7 @@
+import 'package:propagou/app/models/subtipo_model.dart';
 import 'package:propagou/app/models/tipo_model.dart';
 
-import '../../models/subtipo_model.dart';
-
-abstract class TipoService {
+abstract interface class SplashService {
   Future<List<TipoModel>> getTipos();
   Future<List<SubTipoModel>> getSubTipos();
 }

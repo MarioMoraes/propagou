@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:propagou/app/modules/home/home_module.dart';
 import 'package:propagou/app/modules/provedores/provedor_module.dart';
+import 'package:propagou/app/modules/splash/splash_module.dart';
 import 'package:propagou/app/modules/subtipos/subtipos_module.dart';
 
 class AppModule extends Module {
@@ -9,7 +10,8 @@ class AppModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ModuleRoute('/', module: HomeModule()),
+        ModuleRoute('/', module: SplashModule()),
+        ModuleRoute('/home', module: HomeModule()),
         ModuleRoute('/subtipos', module: SubtiposModule()),
         ModuleRoute('/provedor', module: ProvedorModule())
       ];

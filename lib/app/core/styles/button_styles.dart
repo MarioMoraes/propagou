@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:propagou/app/core/constants/color_constants.dart';
 
-import 'colors_app.dart';
 import 'text_styles.dart';
 
 class ButtonStyles {
@@ -14,7 +14,7 @@ class ButtonStyles {
   }
 
   ButtonStyle get secondaryButton => ElevatedButton.styleFrom(
-        backgroundColor: ColorsApp.instance.secondary,
+        backgroundColor: ColorConstants.secondary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(7),
         ),
@@ -24,7 +24,7 @@ class ButtonStyles {
       );
 
   ButtonStyle get primaryButton => ElevatedButton.styleFrom(
-        backgroundColor: ColorsApp.instance.primary,
+        backgroundColor: ColorConstants.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(7),
         ),
@@ -40,7 +40,7 @@ class ButtonStyles {
         textStyle: TextStyles.instance.textPrimaryExtraBold.copyWith(
           fontSize: 14,
         ),
-        side: BorderSide(color: ColorsApp.instance.secondary),
+        side: const BorderSide(color: ColorConstants.secondary),
       );
 
   ButtonStyle get primaryOutlinedButton => OutlinedButton.styleFrom(
@@ -50,7 +50,7 @@ class ButtonStyles {
         textStyle: TextStyles.instance.textPrimaryExtraBold.copyWith(
           fontSize: 14,
         ),
-        side: BorderSide(color: ColorsApp.instance.primary),
+        side: const BorderSide(color: ColorConstants.primary),
       );
 }
 

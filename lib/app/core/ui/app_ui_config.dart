@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:propagou/app/core/styles/colors_app.dart';
+import 'package:propagou/app/core/constants/color_constants.dart';
 
 class AppUiConfig {
   AppUiConfig._();
@@ -22,8 +22,8 @@ class AppUiConfig {
   static var theme = ThemeData(
     fontFamily: 'Lexend',
     primarySwatch: _swatch,
-    primaryColor: ColorsApp.instance.primary,
-    primaryColorLight: ColorsApp.instance.primary.withOpacity(0.5),
+    primaryColor: ColorConstants.primary,
+    primaryColorLight: ColorConstants.primary.withOpacity(0.5),
     scaffoldBackgroundColor: Colors.white,
     inputDecorationTheme: const InputDecorationTheme(
       border: OutlineInputBorder(),

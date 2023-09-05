@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:propagou/app/core/styles/colors_app.dart';
 
+import '../../../core/constants/color_constants.dart';
 import '../controller/home_state.dart';
 
 class CardTipos extends StatelessWidget {
@@ -37,10 +37,10 @@ class CardTipos extends StatelessWidget {
           children: [
             Text(
               descricao,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14,
-                fontWeight: FontWeight.w300,
-                color: context.colors.primary,
+                fontWeight: FontWeight.w700,
+                color: ColorConstants.primary,
               ),
             ),
           ],

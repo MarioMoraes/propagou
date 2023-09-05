@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:propagou/app/core/styles/colors_app.dart';
 import 'package:propagou/app/models/subtipo_model.dart';
 import 'package:propagou/app/modules/home/controller/home_state.dart';
 import 'package:propagou/app/modules/home/widgets/card_tipos.dart';
 
+import '../../core/constants/color_constants.dart';
 import '../../core/enums/search_status.dart';
-import '../../models/tipos_model.dart';
+import '../../models/tipo_model.dart';
 import 'widgets/card_subtipos.dart';
 
 class HomePage extends StatefulWidget {
@@ -48,7 +48,9 @@ class _HomePageState extends State<HomePage> {
     return BlocListener<HomeController, HomeState>(
       bloc: widget.homeController,
       listener: (context, state) {
-        if (state.status == SearchStatus.completed) {
+        if (state.listSubTipos != [] &&
+            state.status == SearchStatus.completed) {
+          widget.homeController.changeItem('8');
           filtrarSubTipos('8', state.listSubTipos);
         }
         if (state.status == SearchStatus.filtered) {
@@ -56,7 +58,7 @@ class _HomePageState extends State<HomePage> {
         }
       },
       child: Scaffold(
-        backgroundColor: context.colors.background,
+        backgroundColor: ColorConstants.background,
         body: CustomScrollView(
           slivers: [
             const SliverAppBar(
@@ -81,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                         height: MediaQuery.of(context).size.height * .65,
                         child: Center(
                           child: LoadingAnimationWidget.staggeredDotsWave(
-                            color: context.colors.primary,
+                            color: ColorConstants.primary,
                             size: 35,
                           ),
                         ),
@@ -93,7 +95,7 @@ class _HomePageState extends State<HomePage> {
             ),
 
             // Lista de Tipos (Horizontal)
-            BlocSelector<HomeController, HomeState, List<TiposModel>>(
+            BlocSelector<HomeController, HomeState, List<TipoModel>>(
               bloc: widget.homeController,
               selector: (state) => state.listTipos,
               builder: (context, list) {
@@ -105,9 +107,10 @@ class _HomePageState extends State<HomePage> {
                   sliver: SliverList(
                     delegate: SliverChildListDelegate(
                       [
+                        const Text('Tipos'),
                         SizedBox(
                           width: double.infinity,
-                          height: 40,
+                          height: 50,
                           child: ListView(
                             scrollDirection: Axis.horizontal,
                             children: list
@@ -116,9 +119,9 @@ class _HomePageState extends State<HomePage> {
                                     padding: const EdgeInsets.only(right: 8.0),
                                     child: CardTipos(
                                       homeController: widget.homeController,
-                                      id: e.id,
                                       descricao: e.descricao,
                                       icon: '',
+                                      id: e.id,
                                     ),
                                   ),
                                 )
@@ -146,12 +149,13 @@ class _HomePageState extends State<HomePage> {
                   sliver: SliverList(
                     delegate: SliverChildListDelegate(
                       [
+                        const Text('SubTipos'),
                         SizedBox(
                           width: double.infinity,
                           height: 100,
                           child: Wrap(
-                              spacing: 1.0,
-                              runSpacing: 4.0,
+                              spacing: 2.0,
+                              runSpacing: 8.0,
                               children: list
                                   .where((element) =>
                                       element.grupoId == idSelected)
@@ -160,9 +164,10 @@ class _HomePageState extends State<HomePage> {
                                       padding:
                                           const EdgeInsets.only(right: 8.0),
                                       child: CardSubTipos(
-                                          id: e.id,
-                                          descricao: e.grupo,
-                                          icon: ''),
+                                        id: e.id,
+                                        descricao: e.grupo,
+                                        icon: '',
+                                      ),
                                     ),
                                   )
                                   .toList()),

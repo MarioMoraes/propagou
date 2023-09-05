@@ -27,7 +27,6 @@ class HomeController extends Cubit<HomeState> {
     try {
       emit(state.copyWith(
         listSubTipos: [],
-        status: SearchStatus.loading,
       ));
       final response = await tipoService.getSubTipos();
       emit(state.copyWith(

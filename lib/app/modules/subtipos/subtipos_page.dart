@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:propagou/app/core/styles/colors_app.dart';
 import 'package:propagou/app/core/styles/text_styles.dart';
 import 'package:propagou/app/models/subtipo_model.dart';
 import 'package:propagou/app/modules/subtipos/controller/subtipos_state.dart';
 import 'package:propagou/app/modules/subtipos/widgets/card_subtipo.dart';
+
+import '../../core/constants/color_constants.dart';
 
 class SubtiposPage extends StatefulWidget {
   final SubTiposController subTiposController;
@@ -39,7 +40,7 @@ class _SubtiposPageState extends State<SubtiposPage> {
             title: Text(
               widget.args['descricao'].toUpperCase(),
               style: context.textStyles.textPrimaryExtraBold
-                  .copyWith(color: context.colors.secondary, fontSize: 20),
+                  .copyWith(color: ColorConstants.secondary, fontSize: 20),
             ),
           ),
           const SliverToBoxAdapter(
@@ -62,7 +63,7 @@ class _SubtiposPageState extends State<SubtiposPage> {
                       height: MediaQuery.of(context).size.height * .65,
                       child: Center(
                         child: LoadingAnimationWidget.staggeredDotsWave(
-                          color: context.colors.primary,
+                          color: ColorConstants.primary,
                           size: 35,
                         ),
                       ),
