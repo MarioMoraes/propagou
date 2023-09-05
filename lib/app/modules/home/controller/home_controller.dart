@@ -6,13 +6,24 @@ class HomeController extends Cubit<HomeState> {
   HomeController({required this.tipoService}) : super(HomeState.initial());
 
   Future<void> getTipos() async {
+    final sp = await SharedPreferences.getInstance();
+    dynamic responseSaved;
+    dynamic response;
+
     try {
       emit(state.copyWith(
         listTipos: [],
         listSubTipos: [],
         status: SearchStatus.loading,
       ));
-      final response = await tipoService.getTipos();
+
+      if (sp.getStringList('tipos') != null) {
+        responseSaved = sp.getStringList('tipos');
+        response = jsonDecode(responseSaved ?? '[]');
+      } else {
+        response = await tipoService.getTipos();
+      }
+
       emit(state.copyWith(listTipos: response));
     } on Exception {
       emit(state.copyWith(
@@ -28,7 +39,9 @@ class HomeController extends Cubit<HomeState> {
       emit(state.copyWith(
         listSubTipos: [],
       ));
+
       final response = await tipoService.getSubTipos();
+
       emit(state.copyWith(
         listSubTipos: response,
         status: SearchStatus.completed,

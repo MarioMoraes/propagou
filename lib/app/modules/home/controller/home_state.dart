@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:propagou/app/models/subtipo_model.dart';
 import 'package:propagou/app/models/tipo_model.dart';
 import 'package:propagou/app/service/tipos/tipo_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/enums/search_status.dart';
 
