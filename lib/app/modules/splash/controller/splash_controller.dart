@@ -21,6 +21,7 @@ class SplashController extends Cubit<SplashState> {
 
     await splashService.getTipos();
     await splashService.getSubTipos();
-    print('teste');
+
+    emit(state.copyWith(status: SearchStatus.completed));
   }
 }

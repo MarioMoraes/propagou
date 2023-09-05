@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:propagou/app/core/constants/color_constants.dart';
+import 'package:propagou/app/core/constants/image_constants.dart';
 
-import '../../core/constants/color_constants.dart';
 import 'controller/splash_controller.dart';
 
 class SplashPage extends StatefulWidget {
@@ -27,23 +28,44 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener(
+    return BlocListener<SplashController, SplashState>(
       bloc: widget.splashController,
       listener: (context, state) {
-        switch (state) {
-          case SearchStatus.loading:
-            LoadingAnimationWidget.staggeredDotsWave(
-              color: ColorConstants.primary,
-              size: 35,
-            );
-          case SearchStatus.completed:
+        if (state.status == SearchStatus.loading) {
+          LoadingAnimationWidget.threeRotatingDots(
+              color: ColorConstants.primary, size: 24);
+        }
+        if (state.status == SearchStatus.completed) {
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/home', (route) => false);
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Splash'),
+        body: DecoratedBox(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(ImageConstants.wallpaper),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: BlocSelector<SplashController, SplashState, bool>(
+            bloc: widget.splashController,
+            selector: (state) => state.status == SearchStatus.loading,
+            builder: (context, showLoading) {
+              return Visibility(
+                visible: showLoading,
+                child: SizedBox(
+                  height: MediaQuery.sizeOf(context).height,
+                  width: MediaQuery.sizeOf(context).width,
+                  child: Center(
+                    child: LoadingAnimationWidget.fourRotatingDots(
+                        color: ColorConstants.secondary, size: 35),
+                  ),
+                ),
+              );
+            },
+          ),
         ),
-        body: Container(),
       ),
     );
   }
