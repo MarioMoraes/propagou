@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:propagou/app/modules/provedores/controller/provedor_state.dart';
+import 'package:propagou/app/modules/provedores/steps/five_page.dart';
 import 'package:propagou/app/modules/provedores/steps/four_page.dart';
 
 import 'steps/one_page.dart';
@@ -49,6 +50,8 @@ class _ProvedorPageState extends State<ProvedorPage> {
             case '/four':
               page = const FourPage();
               break;
+            case '/five':
+              page = const FivePage();
 
             default:
               return null;

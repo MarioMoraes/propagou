@@ -1,27 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:propagou/app/core/widgets/box_title.dart';
-import 'package:propagou/app/core/widgets/custom_input.dart';
-import 'package:propagou/app/models/register_model.dart';
-import 'package:propagou/app/modules/provedores/controller/provedor_state.dart';
 import 'package:validatorless/validatorless.dart';
 
-class OnePage extends StatefulWidget {
-  final ProvedorController provedorController;
+import '../../../core/widgets/box_title.dart';
+import '../../../core/widgets/custom_input.dart';
+import '../../../models/register_model.dart';
 
-  const OnePage({Key? key, required this.provedorController}) : super(key: key);
+class FivePage extends StatefulWidget {
+  const FivePage({super.key});
 
   @override
-  State<OnePage> createState() => _OnePageState();
+  State<FivePage> createState() => _FivePageState();
 }
 
-class _OnePageState extends State<OnePage> {
+class _FivePageState extends State<FivePage> {
+  late RegisterModel registerModel;
+
   final _formKey = GlobalKey<FormState>();
-  final _nomeEC = TextEditingController();
+  final _instagramEC = TextEditingController();
+  final _facebookEC = TextEditingController();
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      registerModel =
+          ModalRoute.of(context)?.settings.arguments as RegisterModel;
+    });
+    super.initState();
+  }
 
   @override
   void dispose() {
+    _instagramEC.dispose();
+    _facebookEC.dispose();
     super.dispose();
-    _nomeEC.dispose();
   }
 
   @override
@@ -35,16 +46,23 @@ class _OnePageState extends State<OnePage> {
               delegate: SliverChildListDelegate.fixed(
                 [
                   const BoxTitle(
-                    title: 'Dados Pessoais',
-                    subTitle: 'Informe Seu Nome ou Razão Social',
+                    title: 'Redes Sociais',
+                    subTitle: 'Informe Suas Redes Sociais',
                   ),
                   const SizedBox(height: 20),
                   CustomInput(
-                    ec: _nomeEC,
-                    hint: 'Nome ou Razão Social',
+                    ec: _instagramEC,
+                    hint: 'Instagram',
                     validator: Validatorless.multiple([
                       Validatorless.required('Campo Obrigatório'),
-                      Validatorless.min(5, 'Minimo Requerido Não Atingido')
+                    ]),
+                  ),
+                  const SizedBox(height: 10),
+                  CustomInput(
+                    ec: _facebookEC,
+                    hint: 'Facebook',
+                    validator: Validatorless.multiple([
+                      Validatorless.required('Campo Obrigatório'),
                     ]),
                   ),
                 ],
@@ -68,9 +86,12 @@ class _OnePageState extends State<OnePage> {
                               _formKey.currentState?.validate() ?? false;
 
                           if (valid) {
-                            var model = RegisterModel(nome: _nomeEC.text);
+                            var model = RegisterModel(
+                              instagram: _instagramEC.text,
+                              facebook: _facebookEC.text,
+                            );
 
-                            Navigator.pushNamed(context, '/two',
+                            Navigator.pushNamed(context, '/six',
                                 arguments: model);
                           }
                         },

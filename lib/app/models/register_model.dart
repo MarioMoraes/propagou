@@ -8,6 +8,8 @@ class RegisterModel {
   final String? doc;
   final String? email;
   final String? phoneNumber;
+  final String? instagram;
+  final String? facebook;
 
   RegisterModel({
     this.nome,
@@ -19,7 +21,25 @@ class RegisterModel {
     this.doc,
     this.email,
     this.phoneNumber,
+    this.instagram,
+    this.facebook,
   });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'nome': nome,
+      'cep': cep,
+      'endereco': endereco,
+      'numero': numero,
+      'bairro': bairro,
+      'cidade': cidade,
+      'doc': doc,
+      'email': email,
+      'phoneNumber': phoneNumber,
+      'instagram': instagram,
+      'facebook': facebook,
+    };
+  }
 
   RegisterModel copyWith({
     String? nome,
@@ -31,6 +51,8 @@ class RegisterModel {
     String? doc,
     String? email,
     String? phoneNumber,
+    String? instagram,
+    String? facebook,
   }) {
     return RegisterModel(
       nome: nome ?? this.nome,
@@ -42,11 +64,13 @@ class RegisterModel {
       doc: doc ?? this.doc,
       email: email ?? this.email,
       phoneNumber: phoneNumber ?? this.phoneNumber,
+      instagram: instagram ?? this.instagram,
+      facebook: facebook ?? this.facebook,
     );
   }
 
   @override
   String toString() {
-    return 'RegisterModel(nome: $nome, cep: $cep, endereco: $endereco, numero: $numero, bairro: $bairro, cidade: $cidade, doc: $doc, email: $email, phoneNumber: $phoneNumber)';
+    return 'RegisterModel(nome: $nome, cep: $cep, endereco: $endereco, numero: $numero, bairro: $bairro, cidade: $cidade, doc: $doc, email: $email, phoneNumber: $phoneNumber, instagram: $instagram, facebook: $facebook)';
   }
 }
