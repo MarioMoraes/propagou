@@ -66,9 +66,18 @@ class _HomePageState extends State<HomePage> {
               expandedHeight: 80,
               title: Text('PROPAGOU'),
             ),
-            const SliverToBoxAdapter(
+            SliverToBoxAdapter(
               child: Column(
-                children: [],
+                children: [
+                  ElevatedButton.icon(
+                    style: const ButtonStyle(
+                        minimumSize:
+                            MaterialStatePropertyAll(Size.fromHeight(50))),
+                    onPressed: () {},
+                    icon: const Icon(Icons.add),
+                    label: const Text('Cadastre-se'),
+                  ),
+                ],
               ),
             ),
             BlocSelector<HomeController, HomeState, bool>(
@@ -107,10 +116,20 @@ class _HomePageState extends State<HomePage> {
                   sliver: SliverList(
                     delegate: SliverChildListDelegate(
                       [
-                        const Text('Tipos'),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 2, bottom: 5, left: 5),
+                          child: Text(
+                            'Tipos',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: ColorConstants.primary,
+                            ),
+                          ),
+                        ),
                         SizedBox(
                           width: double.infinity,
-                          height: 50,
+                          height: 60,
                           child: ListView(
                             scrollDirection: Axis.horizontal,
                             children: list
@@ -149,7 +168,17 @@ class _HomePageState extends State<HomePage> {
                   sliver: SliverList(
                     delegate: SliverChildListDelegate(
                       [
-                        const Text('SubTipos'),
+                        const Padding(
+                          padding: EdgeInsets.only(bottom: 5, left: 5),
+                          child: Text(
+                            'Tipo de Serviço',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: ColorConstants.primary,
+                            ),
+                          ),
+                        ),
                         SizedBox(
                           width: double.infinity,
                           height: 100,

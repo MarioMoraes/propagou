@@ -17,10 +17,16 @@ class HomeController extends Cubit<HomeState> {
         status: SearchStatus.loading,
       ));
 
+      // Check Existing JSON Saved
       if (sp.getStringList('tipos') != null) {
         responseSaved = sp.getStringList('tipos');
-        response = jsonDecode(responseSaved ?? '[]');
+        if (responseSaved is List) {
+          response = responseSaved
+              .map((notification) => TipoModel.fromJson(notification))
+              .toList();
+        }
       } else {
+        // Call API If Not JSON
         response = await tipoService.getTipos();
       }
 
@@ -35,12 +41,27 @@ class HomeController extends Cubit<HomeState> {
   }
 
   Future<void> getSubTipos() async {
+    final sp = await SharedPreferences.getInstance();
+    dynamic responseSaved;
+    dynamic response;
+
     try {
       emit(state.copyWith(
         listSubTipos: [],
       ));
 
-      final response = await tipoService.getSubTipos();
+      // Check Existing JSON Saved
+      if (sp.getStringList('subtipos') != null) {
+        responseSaved = sp.getStringList('subtipos');
+        if (responseSaved is List) {
+          response = responseSaved
+              .map((notification) => SubTipoModel.fromJson(notification))
+              .toList();
+        }
+      } else {
+        // Call API If Not JSON
+        response = await tipoService.getSubTipos();
+      }
 
       emit(state.copyWith(
         listSubTipos: response,
