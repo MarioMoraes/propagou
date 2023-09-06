@@ -36,8 +36,8 @@ class BoxTitle extends StatelessWidget {
               subTitle,
               style: TextStyle(
                   fontSize: 12,
-                  color: ColorConstants.primary.withOpacity(0.7),
-                  fontWeight: FontWeight.w300),
+                  color: ColorConstants.primary.withOpacity(0.8),
+                  fontWeight: FontWeight.w500),
             ),
           ),
         ],

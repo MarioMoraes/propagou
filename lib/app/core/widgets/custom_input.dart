@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'custom_text_form_field.dart';
 
@@ -7,6 +8,7 @@ class CustomInput extends StatelessWidget {
   final String hint;
   final FormFieldValidator<String>? validator;
   final FocusNode? focus;
+  final List<TextInputFormatter>? inputFormatters;
 
   const CustomInput({
     super.key,
@@ -14,6 +16,7 @@ class CustomInput extends StatelessWidget {
     required this.hint,
     this.validator,
     this.focus,
+    this.inputFormatters,
   });
 
   @override
@@ -25,6 +28,7 @@ class CustomInput extends StatelessWidget {
         controller: ec,
         showIcon: false,
         validator: validator,
+        inputFormatters: inputFormatters,
         hint: hint,
         onChange: (value) {},
       ),

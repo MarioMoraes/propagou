@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../constants/color_constants.dart';
 
@@ -12,18 +13,20 @@ class CustomTextFormField extends StatelessWidget {
   final bool showIcon;
   final void Function(String) onChange;
   final FocusNode? myFocus;
+  final List<TextInputFormatter>? inputFormatters;
 
-  CustomTextFormField({
-    Key? key,
-    required this.hint,
-    this.obscureText = false,
-    this.controller,
-    this.validator,
-    this.icon,
-    this.showIcon = false,
-    required this.onChange,
-    this.myFocus,
-  })  : _obscureTextVN = ValueNotifier<bool>(obscureText),
+  CustomTextFormField(
+      {Key? key,
+      required this.hint,
+      this.obscureText = false,
+      this.controller,
+      this.validator,
+      this.icon,
+      this.showIcon = false,
+      required this.onChange,
+      this.myFocus,
+      this.inputFormatters})
+      : _obscureTextVN = ValueNotifier<bool>(obscureText),
         super(key: key);
 
   @override
@@ -36,6 +39,7 @@ class CustomTextFormField extends StatelessWidget {
           focusNode: myFocus,
           controller: controller,
           validator: validator,
+          inputFormatters: inputFormatters,
           obscureText: obscureTextVNValue,
           decoration: InputDecoration(
               filled: true,

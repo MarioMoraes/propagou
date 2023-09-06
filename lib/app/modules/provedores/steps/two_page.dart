@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:propagou/app/models/register_model.dart';
 import 'package:propagou/app/modules/provedores/controller/provedor_state.dart';
 import 'package:validatorless/validatorless.dart';
@@ -31,6 +32,11 @@ class _TwoPageState extends State<TwoPage> {
   CepModel? dados;
 
   late FocusNode myFocusNode;
+
+  var cepFormatter = MaskTextInputFormatter(
+    mask: '#####-####',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
 
   @override
   void initState() {
@@ -67,6 +73,7 @@ class _TwoPageState extends State<TwoPage> {
                   const SizedBox(height: 20),
                   CustomInput(
                     ec: _cepEC,
+                    inputFormatters: [cepFormatter],
                     hint: 'CEP',
                     validator: Validatorless.multiple([
                       Validatorless.required('Campo Obrigatório'),

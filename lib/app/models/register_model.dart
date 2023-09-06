@@ -6,6 +6,8 @@ class RegisterModel {
   final String? bairro;
   final String? cidade;
   final String? doc;
+  final String? email;
+  final String? phoneNumber;
 
   RegisterModel({
     this.nome,
@@ -15,6 +17,8 @@ class RegisterModel {
     this.bairro,
     this.cidade,
     this.doc,
+    this.email,
+    this.phoneNumber,
   });
 
   RegisterModel copyWith({
@@ -25,6 +29,8 @@ class RegisterModel {
     String? bairro,
     String? cidade,
     String? doc,
+    String? email,
+    String? phoneNumber,
   }) {
     return RegisterModel(
       nome: nome ?? this.nome,
@@ -34,11 +40,13 @@ class RegisterModel {
       bairro: bairro ?? this.bairro,
       cidade: cidade ?? this.cidade,
       doc: doc ?? this.doc,
+      email: email ?? this.email,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
     );
   }
 
   @override
   String toString() {
-    return 'RegisterModel(nome: $nome, cep: $cep, endereco: $endereco, numero: $numero, bairro: $bairro, cidade: $cidade, doc: $doc)';
+    return 'RegisterModel(nome: $nome, cep: $cep, endereco: $endereco, numero: $numero, bairro: $bairro, cidade: $cidade, doc: $doc, email: $email, phoneNumber: $phoneNumber)';
   }
 }

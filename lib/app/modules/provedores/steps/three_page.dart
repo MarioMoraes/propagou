@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:propagou/app/core/constants/color_constants.dart';
 import 'package:propagou/app/core/widgets/custom_input.dart';
 import 'package:propagou/app/models/register_model.dart';
 import 'package:propagou/app/modules/provedores/controller/provedor_state.dart';
@@ -18,9 +20,20 @@ class ThreePage extends StatefulWidget {
 
 class _ThreePageState extends State<ThreePage> {
   late RegisterModel registerModel;
+  int? selectedValue = 1;
 
   final _formKey = GlobalKey<FormState>();
   final _docEC = TextEditingController();
+
+  var cpfFormatter = MaskTextInputFormatter(
+    mask: '###.###.###-##',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
+
+  var cnpjFormatter = MaskTextInputFormatter(
+    mask: '##.###.###/####-##',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
 
   @override
   void initState() {
@@ -49,17 +62,66 @@ class _ThreePageState extends State<ThreePage> {
                 [
                   const BoxTitle(
                     title: 'Dados Pessoais',
-                    subTitle: 'Informe CPF ou CPNJ',
+                    subTitle: 'Informe CPF ou CNPJ',
                   ),
                   const SizedBox(height: 10),
-                  CustomInput(
-                    ec: _docEC,
-                    hint: 'CPF/CNPJ',
-                    validator: Validatorless.multiple(
-                      [
-                        Validatorless.cnpj('CNPJ Invalido'),
-                        Validatorless.cpf('CPF Invalido'),
-                      ],
+                  Column(
+                    children: <Widget>[
+                      RadioListTile(
+                        dense: true,
+                        title: const Text(
+                          "CPF",
+                          style: TextStyle(color: ColorConstants.primary),
+                        ),
+                        value: 1,
+                        groupValue: selectedValue,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedValue = value;
+                          });
+                        },
+                      ),
+                      RadioListTile(
+                        dense: true,
+                        title: const Text(
+                          "CNPJ",
+                          style: TextStyle(color: ColorConstants.primary),
+                        ),
+                        value: 2,
+                        groupValue: selectedValue,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedValue = value;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Visibility(
+                    visible: selectedValue == 1,
+                    child: CustomInput(
+                      ec: _docEC,
+                      inputFormatters: [cpfFormatter],
+                      hint: 'CPF',
+                      validator: Validatorless.multiple(
+                        [
+                          Validatorless.cpf('CPF Invalido'),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: selectedValue == 2,
+                    child: CustomInput(
+                      ec: _docEC,
+                      inputFormatters: [cnpjFormatter],
+                      hint: 'CNPJ',
+                      validator: Validatorless.multiple(
+                        [
+                          Validatorless.cnpj('CNPJ Invalido'),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -79,10 +141,13 @@ class _ThreePageState extends State<ThreePage> {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
-                          final valid =
-                              _formKey.currentState?.validate() ?? false;
+                          if (_formKey.currentState?.validate() ?? false) {
+                            var model =
+                                registerModel.copyWith(doc: _docEC.text);
 
-                          if (valid) {}
+                            Navigator.pushNamed(context, '/four',
+                                arguments: model);
+                          }
                         },
                         child: const Text('AVANÇAR'),
                       ),

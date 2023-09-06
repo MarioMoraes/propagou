@@ -63,21 +63,29 @@ class _HomePageState extends State<HomePage> {
           slivers: [
             const SliverAppBar(
               pinned: true,
-              expandedHeight: 80,
+              expandedHeight: 100,
               title: Text('PROPAGOU'),
             ),
             SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  ElevatedButton.icon(
-                    style: const ButtonStyle(
-                        minimumSize:
-                            MaterialStatePropertyAll(Size.fromHeight(50))),
-                    onPressed: () {},
-                    icon: const Icon(Icons.add),
-                    label: const Text('Cadastre-se'),
+              child: SizedBox(
+                width: MediaQuery.sizeOf(context).width * .70,
+                child: ElevatedButton.icon(
+                  style: const ButtonStyle(
+                      iconColor:
+                          MaterialStatePropertyAll(ColorConstants.primary),
+                      backgroundColor:
+                          MaterialStatePropertyAll(ColorConstants.secondary),
+                      minimumSize:
+                          MaterialStatePropertyAll(Size.fromHeight(44))),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/provedor');
+                  },
+                  icon: const Icon(Icons.add),
+                  label: const Text(
+                    'Cadastre-se',
+                    style: TextStyle(color: ColorConstants.primary),
                   ),
-                ],
+                ),
               ),
             ),
             BlocSelector<HomeController, HomeState, bool>(

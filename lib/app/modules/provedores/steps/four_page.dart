@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:propagou/app/models/register_model.dart';
+import 'package:validatorless/validatorless.dart';
+
+import '../../../core/widgets/box_title.dart';
+import '../../../core/widgets/custom_input.dart';
 
 class FourPage extends StatefulWidget {
   const FourPage({Key? key}) : super(key: key);
@@ -9,7 +14,16 @@ class FourPage extends StatefulWidget {
 }
 
 class _FourPageState extends State<FourPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailEC = TextEditingController();
+  final _phoneEC = TextEditingController();
+
   late RegisterModel registerModel;
+
+  var phoneNumberFormatter = MaskTextInputFormatter(
+    mask: '(##) #####-####',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
 
   @override
   void initState() {
@@ -21,13 +35,85 @@ class _FourPageState extends State<FourPage> {
   }
 
   @override
+  void dispose() {
+    _emailEC.dispose();
+    _phoneEC.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Quatro'),
+      body: Form(
+        key: _formKey,
+        child: CustomScrollView(
+          slivers: [
+            SliverList(
+              delegate: SliverChildListDelegate.fixed(
+                [
+                  const BoxTitle(
+                    title: 'Dados Pessoais',
+                    subTitle: 'Informe seu Email e Telefone',
+                  ),
+                  const SizedBox(height: 10),
+                  CustomInput(
+                    ec: _emailEC,
+                    hint: 'Email',
+                    validator: Validatorless.multiple(
+                      [
+                        Validatorless.required('Email Obrigatório'),
+                        Validatorless.email('Email Inválido')
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  CustomInput(
+                    ec: _phoneEC,
+                    hint: 'Telefone',
+                    inputFormatters: [phoneNumberFormatter],
+                    validator: Validatorless.multiple(
+                      [
+                        Validatorless.required('Telefone Obrigatório'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // Mensagem Rodape
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Column(
+                children: [
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 0.0),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState?.validate() ?? false) {
+                            var model = registerModel.copyWith(
+                              email: _emailEC.text,
+                              phoneNumber: _phoneEC.text,
+                            );
+
+                            Navigator.pushNamed(context, '/five',
+                                arguments: model);
+                          }
+                        },
+                        child: const Text('AVANÇAR'),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
-        body: Column(
-          children: const [],
-        ));
+      ),
+    );
   }
 }
