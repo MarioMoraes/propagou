@@ -107,6 +107,7 @@ class _ThreePageState extends State<ThreePage> {
                       hint: 'CPF',
                       validator: Validatorless.multiple(
                         [
+                          Validatorless.required('CPF Obrigatório'),
                           Validatorless.cpf('CPF Invalido'),
                         ],
                       ),
@@ -120,6 +121,7 @@ class _ThreePageState extends State<ThreePage> {
                       hint: 'CNPJ',
                       validator: Validatorless.multiple(
                         [
+                          Validatorless.required('CNPJ Obrigatório'),
                           Validatorless.cnpj('CNPJ Invalido'),
                         ],
                       ),

@@ -13,10 +13,11 @@ class CepRepositoryImpl extends CepRepository {
 
       if (response.statusCode == 200) {
         return CepModel.fromMap(response.data);
+      } else {
+        throw RepositoryException();
       }
     } on DioError {
       throw RepositoryException();
     }
-    throw RepositoryException();
   }
 }

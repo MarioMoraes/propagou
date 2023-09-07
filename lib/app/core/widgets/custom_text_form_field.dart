@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../constants/color_constants.dart';
+import '../helpers/form_helper.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String hint;
@@ -39,6 +40,7 @@ class CustomTextFormField extends StatelessWidget {
         return TextFormField(
           onFieldSubmitted: (value) => onChange(value),
           focusNode: myFocus,
+          onTapOutside: (event) => unFocus(context),
           controller: controller,
           validator: validator,
           inputFormatters: inputFormatters,
