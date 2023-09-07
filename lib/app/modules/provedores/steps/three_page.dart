@@ -102,6 +102,7 @@ class _ThreePageState extends State<ThreePage> {
                     visible: selectedValue == 1,
                     child: CustomInput(
                       ec: _docEC,
+                      keyboardType: TextInputType.number,
                       inputFormatters: [cpfFormatter],
                       hint: 'CPF',
                       validator: Validatorless.multiple(
@@ -130,14 +131,22 @@ class _ThreePageState extends State<ThreePage> {
 
             // Mensagem Rodape
             SliverFillRemaining(
-              hasScrollBody: false,
-              child: Column(
-                children: [
-                  const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 0.0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
+                hasScrollBody: false,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 2,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('VOLTAR'),
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 2,
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
@@ -152,10 +161,8 @@ class _ThreePageState extends State<ThreePage> {
                         child: const Text('AVANÇAR'),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            )
+                  ],
+                ))
           ],
         ),
       ),

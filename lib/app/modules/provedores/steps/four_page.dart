@@ -84,33 +84,40 @@ class _FourPageState extends State<FourPage> {
             // Mensagem Rodape
             SliverFillRemaining(
               hasScrollBody: false,
-              child: Column(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 0.0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState?.validate() ?? false) {
-                            var model = registerModel.copyWith(
-                              email: _emailEC.text,
-                              phoneNumber: _phoneEC.text,
-                            );
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 2,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('VOLTAR'),
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 2,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState?.validate() ?? false) {
+                          var model = registerModel.copyWith(
+                            email: _emailEC.text,
+                            phoneNumber: _phoneEC.text,
+                          );
 
-                            Navigator.pushNamed(context, '/five',
-                                arguments: model);
-                          }
-                        },
-                        child: const Text('AVANÇAR'),
-                      ),
+                          Navigator.pushNamed(context, '/five',
+                              arguments: model);
+                        }
+                      },
+                      child: const Text('AVANÇAR'),
                     ),
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -14,19 +14,21 @@ class CustomTextFormField extends StatelessWidget {
   final void Function(String) onChange;
   final FocusNode? myFocus;
   final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? keyboardType;
 
-  CustomTextFormField(
-      {Key? key,
-      required this.hint,
-      this.obscureText = false,
-      this.controller,
-      this.validator,
-      this.icon,
-      this.showIcon = false,
-      required this.onChange,
-      this.myFocus,
-      this.inputFormatters})
-      : _obscureTextVN = ValueNotifier<bool>(obscureText),
+  CustomTextFormField({
+    Key? key,
+    required this.hint,
+    this.obscureText = false,
+    this.controller,
+    this.validator,
+    this.icon,
+    this.showIcon = false,
+    required this.onChange,
+    this.myFocus,
+    this.inputFormatters,
+    this.keyboardType,
+  })  : _obscureTextVN = ValueNotifier<bool>(obscureText),
         super(key: key);
 
   @override
@@ -41,6 +43,7 @@ class CustomTextFormField extends StatelessWidget {
           validator: validator,
           inputFormatters: inputFormatters,
           obscureText: obscureTextVNValue,
+          keyboardType: keyboardType,
           decoration: InputDecoration(
               filled: true,
               fillColor: ColorConstants.background.withOpacity(0.5),

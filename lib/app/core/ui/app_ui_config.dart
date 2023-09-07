@@ -35,14 +35,13 @@ class AppUiConfig {
       ),
       labelStyle: TextStyle(color: Colors.black),
     ),
-    /*
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
+          side: const BorderSide(color: Colors.white),
           borderRadius: BorderRadius.circular(0),
         ),
       ),
     ),
-    */
   );
 }

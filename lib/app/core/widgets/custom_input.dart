@@ -9,6 +9,7 @@ class CustomInput extends StatelessWidget {
   final FormFieldValidator<String>? validator;
   final FocusNode? focus;
   final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? keyboardType;
 
   const CustomInput({
     super.key,
@@ -17,6 +18,7 @@ class CustomInput extends StatelessWidget {
     this.validator,
     this.focus,
     this.inputFormatters,
+    this.keyboardType,
   });
 
   @override
@@ -29,6 +31,7 @@ class CustomInput extends StatelessWidget {
         showIcon: false,
         validator: validator,
         inputFormatters: inputFormatters,
+        keyboardType: keyboardType,
         hint: hint,
         onChange: (value) {},
       ),

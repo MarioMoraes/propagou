@@ -73,8 +73,9 @@ class _TwoPageState extends State<TwoPage> {
                   const SizedBox(height: 20),
                   CustomInput(
                     ec: _cepEC,
-                    inputFormatters: [cepFormatter],
                     hint: 'CEP',
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [cepFormatter],
                     validator: Validatorless.multiple([
                       Validatorless.required('Campo Obrigatório'),
                       Validatorless.min(8, 'Cep Inválido')
@@ -87,8 +88,11 @@ class _TwoPageState extends State<TwoPage> {
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
                           onPressed: () async {
-                            await widget.provedorController.getCep(_cepEC.text);
-                            myFocusNode.requestFocus();
+                            if (_cepEC.text.isNotEmpty) {
+                              await widget.provedorController
+                                  .getCep(_cepEC.text);
+                              myFocusNode.requestFocus();
+                            } else {}
                           },
                           child: const Text('Buscar CEP')),
                     ),
@@ -127,34 +131,41 @@ class _TwoPageState extends State<TwoPage> {
 
             // Rodape
             SliverFillRemaining(
-              hasScrollBody: false,
-              child: Column(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 0.0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          final valid =
-                              _formKey.currentState?.validate() ?? false;
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 2,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('VOLTAR'),
+                    ),
+                  ),
+                  // const Spacer(),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 2,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        final valid =
+                            _formKey.currentState?.validate() ?? false;
 
-                          if (valid) {
-                            var model = registerModel.copyWith(
-                                endereco: dados?.logradouro,
-                                cep: _cepEC.text,
-                                numero: _numeroEC.text,
-                                bairro: dados?.bairro,
-                                cidade: dados?.localidade);
+                        if (valid) {
+                          var model = registerModel.copyWith(
+                              endereco: dados?.logradouro,
+                              cep: _cepEC.text,
+                              numero: _numeroEC.text,
+                              bairro: dados?.bairro,
+                              cidade: dados?.localidade);
 
-                            Navigator.pushNamed(context, '/three',
-                                arguments: model);
-                          }
-                        },
-                        child: const Text('AVANÇAR'),
-                      ),
+                          Navigator.pushNamed(context, '/three',
+                              arguments: model);
+                        }
+                      },
+                      child: const Text('AVANÇAR'),
                     ),
                   ),
                 ],

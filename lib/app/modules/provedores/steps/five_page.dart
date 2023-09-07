@@ -71,21 +71,26 @@ class _FivePageState extends State<FivePage> {
 
             // Mensagem Rodape
             SliverFillRemaining(
-              hasScrollBody: false,
-              child: Column(
-                children: [
-                  const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 0.0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
+                hasScrollBody: false,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 2,
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
-                          final valid =
-                              _formKey.currentState?.validate() ?? false;
-
-                          if (valid) {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('VOLTAR'),
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 2,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState?.validate() ?? false) {
                             var model = RegisterModel(
                               instagram: _instagramEC.text,
                               facebook: _facebookEC.text,
@@ -98,10 +103,8 @@ class _FivePageState extends State<FivePage> {
                         child: const Text('AVANÇAR'),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            )
+                  ],
+                ))
           ],
         ),
       ),
