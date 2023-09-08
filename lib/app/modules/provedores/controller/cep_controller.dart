@@ -1,11 +1,11 @@
-part of 'provedor_state.dart';
+part of 'cep_state.dart';
 
-class ProvedorController extends Cubit<ProvedorState> {
+class CepController extends Cubit<CepState> {
   final CepService _cepService;
 
-  ProvedorController({required CepService cepService})
+  CepController({required CepService cepService})
       : _cepService = cepService,
-        super(ProvedorState.initial());
+        super(CepState.initial());
 
   Future<void> getCep(String cep) async {
     try {

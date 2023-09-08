@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:propagou/app/core/widgets/box_title.dart';
 import 'package:propagou/app/core/widgets/custom_input.dart';
 import 'package:propagou/app/models/register_model.dart';
-import 'package:propagou/app/modules/provedores/controller/provedor_state.dart';
 import 'package:validatorless/validatorless.dart';
 
 class OnePage extends StatefulWidget {
-  final ProvedorController provedorController;
-
-  const OnePage({Key? key, required this.provedorController}) : super(key: key);
+  const OnePage({Key? key}) : super(key: key);
 
   @override
   State<OnePage> createState() => _OnePageState();

@@ -10,6 +10,7 @@ class CustomInput extends StatelessWidget {
   final FocusNode? focus;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
+  final bool? enabled;
 
   const CustomInput({
     super.key,
@@ -19,6 +20,7 @@ class CustomInput extends StatelessWidget {
     this.focus,
     this.inputFormatters,
     this.keyboardType,
+    this.enabled = true,
   });
 
   @override
@@ -26,6 +28,7 @@ class CustomInput extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 20.0, right: 20.0),
       child: CustomTextFormField(
+        enabled: enabled,
         myFocus: focus,
         controller: ec,
         showIcon: false,

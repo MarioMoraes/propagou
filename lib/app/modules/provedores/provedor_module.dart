@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
-import 'package:propagou/app/modules/provedores/controller/provedor_state.dart';
+import 'package:propagou/app/modules/provedores/controller/cep_state.dart';
 import 'package:propagou/app/modules/provedores/provedor_page.dart';
 import 'package:propagou/app/repository/provedores/cep/cep_repository.dart';
 import 'package:propagou/app/repository/provedores/cep/cep_repository_impl.dart';
@@ -14,7 +14,7 @@ class ProvedorModule extends Module {
         Bind.lazySingleton<CepService>(
             (i) => CepServiceImpl(cepRepository: i())),
         BlocBind.lazySingleton(
-          (i) => ProvedorController(cepService: i()),
+          (i) => CepController(cepService: i()),
         )
       ];
 
@@ -23,7 +23,7 @@ class ProvedorModule extends Module {
         ChildRoute(
           Modular.initialRoute,
           child: (_, args) => ProvedorPage(
-            controller: Modular.get<ProvedorController>(),
+            controller: Modular.get<CepController>(),
           ),
         ),
       ];

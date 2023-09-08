@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:propagou/app/models/subtipo_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/widgets/box_title.dart';
 import '../../../models/register_model.dart';
@@ -12,21 +14,18 @@ class SixPage extends StatefulWidget {
 
 class _SixPageState extends State<SixPage> {
   late RegisterModel registerModel;
+  dynamic response;
 
   final _formKey = GlobalKey<FormState>();
 
   String? selectedOption;
 
-  List<String> options = [
-    'Opção 1',
-    'Opção 2',
-    'Opção 3',
-    'Opção 4',
-  ];
-
   @override
   void initState() {
     super.initState();
+
+    _loadData();
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       registerModel =
           ModalRoute.of(context)?.settings.arguments as RegisterModel;
@@ -61,7 +60,7 @@ class _SixPageState extends State<SixPage> {
                           selectedOption = newValue;
                         });
                       },
-                      items: options.map((option) {
+                      items: response.map((option) {
                         return DropdownMenuItem<String>(
                           value: option,
                           child: Text(option),
@@ -94,7 +93,12 @@ class _SixPageState extends State<SixPage> {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (_formKey.currentState?.validate() ?? false) {}
+                          if (_formKey.currentState?.validate() ?? false) {
+                            Navigator.pushNamed(
+                              context,
+                              '/four',
+                            );
+                          }
                         },
                         child: const Text('AVANÇAR'),
                       ),
@@ -105,5 +109,18 @@ class _SixPageState extends State<SixPage> {
         ),
       ),
     );
+  }
+
+  Future<void> _loadData() async {
+    final sp = await SharedPreferences.getInstance();
+    if (sp.getStringList('subtipos') != null) {
+      dynamic responseSaved = sp.getStringList('subtipos');
+      if (responseSaved is List) {
+        response = responseSaved
+            .map((notification) => SubTipoModel.fromJson(notification))
+            .toList();
+      }
+      print(response[0].grupo);
+    }
   }
 }

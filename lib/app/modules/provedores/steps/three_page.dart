@@ -3,16 +3,12 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:propagou/app/core/constants/color_constants.dart';
 import 'package:propagou/app/core/widgets/custom_input.dart';
 import 'package:propagou/app/models/register_model.dart';
-import 'package:propagou/app/modules/provedores/controller/provedor_state.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../../../core/widgets/box_title.dart';
 
 class ThreePage extends StatefulWidget {
-  final ProvedorController provedorController;
-
-  const ThreePage({Key? key, required this.provedorController})
-      : super(key: key);
+  const ThreePage({Key? key}) : super(key: key);
 
   @override
   State<ThreePage> createState() => _ThreePageState();
@@ -156,7 +152,7 @@ class _ThreePageState extends State<ThreePage> {
                             var model =
                                 registerModel.copyWith(doc: _docEC.text);
 
-                            Navigator.pushNamed(context, '/four',
+                            Navigator.pushNamed(context, '/five',
                                 arguments: model);
                           }
                         },

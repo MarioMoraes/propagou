@@ -16,6 +16,7 @@ class CustomTextFormField extends StatelessWidget {
   final FocusNode? myFocus;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
+  final bool? enabled;
 
   CustomTextFormField({
     Key? key,
@@ -29,6 +30,7 @@ class CustomTextFormField extends StatelessWidget {
     this.myFocus,
     this.inputFormatters,
     this.keyboardType,
+    this.enabled,
   })  : _obscureTextVN = ValueNotifier<bool>(obscureText),
         super(key: key);
 
@@ -38,6 +40,7 @@ class CustomTextFormField extends StatelessWidget {
       valueListenable: _obscureTextVN,
       builder: (_, obscureTextVNValue, child) {
         return TextFormField(
+          enabled: enabled,
           onFieldSubmitted: (value) => onChange(value),
           focusNode: myFocus,
           onTapOutside: (event) => unFocus(context),
