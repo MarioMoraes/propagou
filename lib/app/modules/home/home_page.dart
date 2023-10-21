@@ -67,27 +67,25 @@ class _HomePageState extends State<HomePage> {
               title: Text('PROPAGOU'),
             ),
             SliverToBoxAdapter(
-              child: SizedBox(
-                width: MediaQuery.sizeOf(context).width * .70,
-                child: ElevatedButton.icon(
-                  style: const ButtonStyle(
-                      iconColor:
-                          MaterialStatePropertyAll(ColorConstants.primary),
-                      backgroundColor:
-                          MaterialStatePropertyAll(ColorConstants.secondary),
-                      minimumSize:
-                          MaterialStatePropertyAll(Size.fromHeight(44))),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed('/provedor');
-                  },
-                  icon: const Icon(Icons.add),
-                  label: const Text(
-                    'Cadastre-se',
-                    style: TextStyle(color: ColorConstants.primary),
-                  ),
-                ),
-              ),
-            ),
+                child: SizedBox(
+                    width: MediaQuery.sizeOf(context).width * .70,
+                    child: ElevatedButton.icon(
+                      style: const ButtonStyle(
+                          iconColor:
+                              MaterialStatePropertyAll(ColorConstants.primary),
+                          backgroundColor: MaterialStatePropertyAll(
+                              ColorConstants.secondary),
+                          minimumSize:
+                              MaterialStatePropertyAll(Size.fromHeight(44))),
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/provedor');
+                      },
+                      icon: const Icon(Icons.add),
+                      label: const Text(
+                        'Cadastre-se',
+                        style: TextStyle(color: ColorConstants.primary),
+                      ),
+                    ))),
             BlocSelector<HomeController, HomeState, bool>(
               bloc: widget.homeController,
               selector: (state) => state.status == SearchStatus.loading,

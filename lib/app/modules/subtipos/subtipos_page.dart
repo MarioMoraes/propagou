@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:propagou/app/core/styles/text_styles.dart';
+import 'package:propagou/app/core/widgets/animated_app_bar_widget.dart';
 import 'package:propagou/app/models/subtipo_model.dart';
 import 'package:propagou/app/modules/subtipos/controller/subtipos_state.dart';
 import 'package:propagou/app/modules/subtipos/widgets/card_subtipo.dart';
@@ -35,14 +36,14 @@ class _SubtiposPageState extends State<SubtiposPage> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            expandedHeight: 80,
-            centerTitle: true,
-            title: Text(
-              widget.args['descricao'].toUpperCase(),
-              style: context.textStyles.textPrimaryExtraBold
-                  .copyWith(color: ColorConstants.secondary, fontSize: 20),
-            ),
-          ),
+              automaticallyImplyLeading: false,
+              expandedHeight: 80,
+              centerTitle: true,
+              title: AnimatedAppBarWidget(
+                name: widget.args['descricao'].toUpperCase(),
+                appBarPlayTime: 500.ms,
+                appBarDelayTime: 500.ms,
+              )),
           const SliverToBoxAdapter(
             child: Column(
               children: [
