@@ -147,6 +147,7 @@ class _HomePageState extends State<HomePage> {
                                       descricao: e.descricao,
                                       icon: '',
                                       id: e.id,
+                                      selected: false,
                                     ),
                                   ),
                                 )

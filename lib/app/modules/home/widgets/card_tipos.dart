@@ -8,6 +8,7 @@ class CardTipos extends StatelessWidget {
   final String id;
   final String descricao;
   final String icon;
+  final bool selected;
   final HomeController homeController;
 
   const CardTipos({
@@ -16,6 +17,7 @@ class CardTipos extends StatelessWidget {
     required this.icon,
     required this.id,
     required this.homeController,
+    required this.selected,
   }) : super(key: key);
 
   @override
@@ -26,10 +28,12 @@ class CardTipos extends StatelessWidget {
       },
       child: Container(
         height: 80,
-        width: 75,
+        width: 95,
         decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: ColorConstants.primary.withOpacity(0.5)),
+          color: selected
+              ? ColorConstants.background.withOpacity(0.5)
+              : Colors.white,
+          border: Border.all(color: ColorConstants.primary.withOpacity(0.3)),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
@@ -39,8 +43,8 @@ class CardTipos extends StatelessWidget {
             Image.asset(
               'assets/images/$icon',
               fit: BoxFit.cover,
-              height: 50,
-              width: 50,
+              height: 40,
+              width: 40,
             ),
             const SizedBox(
               height: 10,

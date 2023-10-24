@@ -120,7 +120,6 @@ class _SixPageState extends State<SixPage> {
             .map((notification) => SubTipoModel.fromJson(notification))
             .toList();
       }
-      print(response[0].grupo);
     }
   }
 }

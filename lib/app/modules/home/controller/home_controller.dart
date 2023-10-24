@@ -5,6 +5,8 @@ class HomeController extends Cubit<HomeState> {
 
   HomeController({required this.tipoService}) : super(HomeState.initial());
 
+  var itemSel = [];
+
   Future<void> getTipos() async {
     final sp = await SharedPreferences.getInstance();
     dynamic responseSaved;
@@ -79,10 +81,9 @@ class HomeController extends Cubit<HomeState> {
   void changeItem(String id) {
     emit(state.copyWith(itemSelected: '1', status: SearchStatus.loading));
     emit(state.copyWith(
-      itemSelected: id,
-      listSubTipos: state.listSubTipos,
-      status: SearchStatus.filtered,
-    ));
+        itemSelected: id,
+        listSubTipos: state.listSubTipos,
+        status: SearchStatus.filtered));
   }
 
   String get itemSelected => state.itemSelected;

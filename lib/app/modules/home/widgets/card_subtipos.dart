@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class CardSubTipos extends StatelessWidget {
@@ -43,7 +44,13 @@ class CardSubTipos extends StatelessWidget {
             ),
           ],
         ),
-      ),
+      ).animate().slideX(
+            duration: 500.ms,
+            delay: 0.ms,
+            begin: 1,
+            end: 0,
+            curve: Curves.easeInOutSine,
+          ),
     );
   }
 }

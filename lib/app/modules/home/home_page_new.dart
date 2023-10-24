@@ -46,21 +46,21 @@ class _HomePageNewState extends State<HomePageNew> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return BlocListener<HomeController, HomeState>(
-          bloc: widget.homeController,
-          listener: (context, state) {
-            if (state.listSubTipos != [] &&
-                state.status == SearchStatus.completed) {
-              widget.homeController.changeItem('8');
-              filtrarSubTipos('8', state.listSubTipos);
-            }
-            if (state.status == SearchStatus.filtered) {
-              filtrarSubTipos(state.itemSelected, state.listSubTipos);
-            }
-          },
-          child: Scaffold(
+    return BlocListener<HomeController, HomeState>(
+      bloc: widget.homeController,
+      listener: (context, state) {
+        if (state.listSubTipos != [] &&
+            state.status == SearchStatus.completed) {
+          widget.homeController.changeItem('8');
+          filtrarSubTipos('8', state.listSubTipos);
+        }
+        if (state.status == SearchStatus.filtered) {
+          filtrarSubTipos(state.itemSelected, state.listSubTipos);
+        }
+      },
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return Scaffold(
               drawer: const Drawer(
                 backgroundColor: Colors.blue,
               ),
@@ -107,16 +107,21 @@ class _HomePageNewState extends State<HomePageNew> {
                     Padding(
                       padding:
                           const EdgeInsets.only(top: 220, left: 20, right: 20),
-                      child: _ListSubTiposWidget(
-                        constraints: constraints,
-                        controller: widget.homeController,
-                      ),
+                      child: BlocSelector<HomeController, HomeState,
+                              List<SubTipoModel>>(
+                          bloc: widget.homeController,
+                          selector: (state) => subtiposFiltrados,
+                          builder: (context, list) {
+                            return _ListSubTiposWidget(
+                              subtiposFiltrados: subtiposFiltrados,
+                            );
+                          }),
                     ),
                   ],
                 ),
-              )),
-        );
-      },
+              ));
+        },
+      ),
     );
   }
 }
@@ -143,10 +148,12 @@ class _ListTiposWidget extends StatelessWidget {
                   (e) => Padding(
                     padding: const EdgeInsets.only(right: 8.0),
                     child: CardTipos(
-                        homeController: controller,
-                        descricao: e.descricao,
-                        icon: e.icon,
-                        id: e.id),
+                      homeController: controller,
+                      descricao: e.descricao,
+                      icon: e.icon,
+                      id: e.id,
+                      selected: e.id == controller.itemSelected,
+                    ),
                   ),
                 )
                 .toList(),
@@ -164,44 +171,27 @@ class _ListTiposWidget extends StatelessWidget {
 }
 
 class _ListSubTiposWidget extends StatelessWidget {
-  final BoxConstraints constraints;
-  final HomeController controller;
+  final List<SubTipoModel> subtiposFiltrados;
 
-  const _ListSubTiposWidget(
-      {required this.constraints, required this.controller});
+  const _ListSubTiposWidget({
+    required this.subtiposFiltrados,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<HomeController, HomeState, List<SubTipoModel>>(
-      bloc: controller,
-      selector: (state) => state.listSubTipos,
-      builder: (context, list) {
-        return SizedBox(
-          width: double.infinity,
-          height: 100,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: list
-                .map(
-                  (e) => Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: CardSubTipos(
-                      id: e.id,
-                      descricao: e.grupo,
-                      icon: '',
-                    ),
-                  ),
-                )
-                .toList(),
-          ).animate().slideX(
-                duration: 500.ms,
-                delay: 0.ms,
-                begin: 1,
-                end: 0,
-                curve: Curves.easeInOutSine,
+    return Wrap(
+        runSpacing: 6.0,
+        children: subtiposFiltrados
+            .map(
+              (e) => Padding(
+                padding: const EdgeInsets.only(right: 4.0),
+                child: CardSubTipos(
+                  id: e.id,
+                  descricao: e.grupo,
+                  icon: '',
+                ),
               ),
-        );
-      },
-    );
+            )
+            .toList());
   }
 }
