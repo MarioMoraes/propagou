@@ -44,12 +44,18 @@ class CardSubTipos extends StatelessWidget {
             ),
           ],
         ),
-      ).animate().slideX(
+      )
+          .animate()
+          .scaleXY(
+            begin: 0.0,
+            end: 1.0,
             duration: 500.ms,
-            delay: 0.ms,
-            begin: 1,
+            curve: Curves.decelerate,
+          )
+          .fadeIn()
+          .blurXY(
+            begin: 10,
             end: 0,
-            curve: Curves.easeInOutSine,
           ),
     );
   }

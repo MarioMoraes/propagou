@@ -103,19 +103,30 @@ class _HomePageNewState extends State<HomePageNew> {
                         controller: widget.homeController,
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 220, left: 20),
+                      child: Text(
+                        'Categorias',
+                        style: context.textStyles.textPrimaryFontBold.copyWith(
+                          fontSize: 14,
+                          color: ColorConstants.primary,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
                     // List SubTipos
                     Padding(
                       padding:
-                          const EdgeInsets.only(top: 220, left: 20, right: 20),
-                      child: BlocSelector<HomeController, HomeState,
-                              List<SubTipoModel>>(
-                          bloc: widget.homeController,
-                          selector: (state) => subtiposFiltrados,
-                          builder: (context, list) {
-                            return _ListSubTiposWidget(
-                              subtiposFiltrados: subtiposFiltrados,
-                            );
-                          }),
+                          const EdgeInsets.only(top: 250, left: 20, right: 20),
+                      child: BlocSelector<HomeController, HomeState, bool>(
+                        bloc: widget.homeController,
+                        selector: (state) =>
+                            state.status == SearchStatus.filtered,
+                        builder: (context, list) {
+                          return _ListSubTiposWidget(
+                              subtiposFiltrados: subtiposFiltrados);
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -158,12 +169,11 @@ class _ListTiposWidget extends StatelessWidget {
                 )
                 .toList(),
           ).animate().slideX(
-                duration: 500.ms,
-                delay: 0.ms,
-                begin: 1,
-                end: 0,
-                curve: Curves.easeInOutSine,
-              ),
+              duration: 500.ms,
+              delay: 0.ms,
+              begin: 1,
+              end: 0,
+              curve: Curves.easeInOutSine),
         );
       },
     );
