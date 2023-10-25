@@ -14,7 +14,7 @@ class SixPage extends StatefulWidget {
 
 class _SixPageState extends State<SixPage> {
   late RegisterModel registerModel;
-  dynamic response;
+  List<String> response = [];
 
   final _formKey = GlobalKey<FormState>();
 
@@ -23,13 +23,18 @@ class _SixPageState extends State<SixPage> {
   @override
   void initState() {
     super.initState();
-
-    _loadData();
+    _initLoad();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      /*
       registerModel =
           ModalRoute.of(context)?.settings.arguments as RegisterModel;
+      */
     });
+  }
+
+  _initLoad() async {
+    await _loadData();
   }
 
   @override
@@ -45,31 +50,34 @@ class _SixPageState extends State<SixPage> {
         child: CustomScrollView(
           slivers: [
             SliverList(
-              delegate: SliverChildListDelegate.fixed([
-                const BoxTitle(
-                  title: 'Categoria',
-                  subTitle: 'Informe Sua Categoria e Classificação',
-                ),
-                const SizedBox(height: 10),
-                Column(
-                  children: [
-                    DropdownButton<String>(
-                      value: selectedOption,
-                      onChanged: (newValue) {
-                        setState(() {
-                          selectedOption = newValue;
-                        });
-                      },
-                      items: response.map((option) {
-                        return DropdownMenuItem<String>(
-                          value: option,
-                          child: Text(option),
-                        );
-                      }).toList(),
-                    ),
-                  ],
-                ),
-              ]),
+              delegate: SliverChildListDelegate.fixed(
+                [
+                  const BoxTitle(
+                    title: 'Categoria',
+                    subTitle: 'Informe Sua Categoria e Classificação',
+                  ),
+                  const SizedBox(height: 10),
+                  Column(
+                    children: [
+                      DropdownButton<String>(
+                        isDense: true,
+                        value: selectedOption,
+                        onChanged: (newValue) {
+                          setState(() {
+                            selectedOption = newValue;
+                          });
+                        },
+                        items: response.map((option) {
+                          return DropdownMenuItem<String>(
+                            value: option,
+                            child: Text(option),
+                          );
+                        }).toList(),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
 
             // Mensagem Rodape
@@ -112,14 +120,18 @@ class _SixPageState extends State<SixPage> {
   }
 
   Future<void> _loadData() async {
+    List<SubTipoModel> responseTemp;
+
     final sp = await SharedPreferences.getInstance();
     if (sp.getStringList('subtipos') != null) {
-      dynamic responseSaved = sp.getStringList('subtipos');
-      if (responseSaved is List) {
-        response = responseSaved
+      List<String> responseSaved = sp.getStringList('subtipos') as List<String>;
+      setState(() {
+        responseTemp = responseSaved
             .map((notification) => SubTipoModel.fromJson(notification))
             .toList();
-      }
+
+        response = responseTemp.map((item) => item.grupo).toList();
+      });
     }
   }
 }

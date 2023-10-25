@@ -27,8 +27,8 @@ class CardTipos extends StatelessWidget {
         homeController.changeItem(id);
       },
       child: Container(
-        height: 80,
-        width: 95,
+        height: 90,
+        width: 90,
         decoration: BoxDecoration(
           color: selected
               ? ColorConstants.background.withOpacity(0.5)
@@ -43,8 +43,8 @@ class CardTipos extends StatelessWidget {
             Image.asset(
               'assets/images/$icon',
               fit: BoxFit.cover,
-              height: 40,
-              width: 40,
+              height: 35,
+              width: 35,
             ),
             const SizedBox(
               height: 10,

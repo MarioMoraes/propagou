@@ -4,7 +4,6 @@ import 'package:propagou/app/modules/provedores/steps/five_page.dart';
 import 'package:propagou/app/modules/provedores/steps/four_page.dart';
 import 'package:propagou/app/modules/provedores/steps/six_page.dart';
 
-import 'steps/one_page.dart';
 import 'steps/three_page.dart';
 import 'steps/two_page.dart';
 
@@ -40,7 +39,7 @@ class _ProvedorPageState extends State<ProvedorPage> {
 
           switch (route) {
             case '/one':
-              page = const OnePage();
+              page = const SixPage();
               break;
             case '/two':
               page = TwoPage(provedorController: widget.controller);

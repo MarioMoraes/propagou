@@ -61,76 +61,81 @@ class _HomePageNewState extends State<HomePageNew> {
       child: LayoutBuilder(
         builder: (context, constraints) {
           return Scaffold(
-              drawer: const Drawer(
-                backgroundColor: Colors.blue,
+            drawer: const Drawer(
+              backgroundColor: Colors.blue,
+            ),
+            body: SafeArea(
+              child: Stack(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top: 20, left: 20),
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Icon(
+                        Icons.menu,
+                        color: ColorConstants.primary,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, right: 20),
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: GestureDetector(
+                          onTap: () =>
+                              Navigator.of(context).pushNamed('/provedor'),
+                          child: const CircleAvatar(
+                              child: Icon(Icons.verified_user))),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 60, left: 20),
+                    child: Text(
+                      'PROPAGOU',
+                      style: context.textStyles.textPrimaryFontBold.copyWith(
+                        fontSize: 22,
+                        color: ColorConstants.primary,
+                      ),
+                    ),
+                  ),
+                  // List Tipos
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 100, left: 20, right: 20),
+                    child: _ListTiposWidget(
+                      constraints: constraints,
+                      controller: widget.homeController,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 210, left: 20),
+                    child: Text(
+                      'Categorias',
+                      style: context.textStyles.textPrimaryFontBold.copyWith(
+                        fontSize: 14,
+                        color: ColorConstants.primary,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  // List SubTipos
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 240, left: 20, right: 20),
+                    child: BlocSelector<HomeController, HomeState, bool>(
+                      bloc: widget.homeController,
+                      selector: (state) =>
+                          state.status == SearchStatus.filtered,
+                      builder: (context, list) {
+                        return _ListSubTiposWidget(
+                            subtiposFiltrados: subtiposFiltrados);
+                      },
+                    ),
+                  ),
+                ],
               ),
-              body: SafeArea(
-                child: Stack(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 20, left: 20),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Icon(
-                          Icons.menu,
-                          color: ColorConstants.primary,
-                        ),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 20, right: 20),
-                      child: Align(
-                        alignment: Alignment.topRight,
-                        child: CircleAvatar(child: Icon(Icons.verified_user)),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 60, left: 20),
-                      child: Text(
-                        'PROPAGOU',
-                        style: context.textStyles.textPrimaryFontBold.copyWith(
-                          fontSize: 22,
-                          color: ColorConstants.primary,
-                        ),
-                      ),
-                    ),
-                    // List Tipos
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 100, left: 20, right: 20),
-                      child: _ListTiposWidget(
-                        constraints: constraints,
-                        controller: widget.homeController,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 220, left: 20),
-                      child: Text(
-                        'Categorias',
-                        style: context.textStyles.textPrimaryFontBold.copyWith(
-                          fontSize: 14,
-                          color: ColorConstants.primary,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    // List SubTipos
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 250, left: 20, right: 20),
-                      child: BlocSelector<HomeController, HomeState, bool>(
-                        bloc: widget.homeController,
-                        selector: (state) =>
-                            state.status == SearchStatus.filtered,
-                        builder: (context, list) {
-                          return _ListSubTiposWidget(
-                              subtiposFiltrados: subtiposFiltrados);
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ));
+            ),
+          );
         },
       ),
     );
@@ -150,31 +155,30 @@ class _ListTiposWidget extends StatelessWidget {
       selector: (state) => state.listTipos,
       builder: (context, list) {
         return SizedBox(
-          width: double.infinity,
-          height: 100,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: list
-                .map(
-                  (e) => Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: CardTipos(
-                      homeController: controller,
-                      descricao: e.descricao,
-                      icon: e.icon,
-                      id: e.id,
-                      selected: e.id == controller.itemSelected,
+            width: double.infinity,
+            height: 90,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: list
+                  .map(
+                    (e) => Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: CardTipos(
+                        homeController: controller,
+                        descricao: e.descricao,
+                        icon: e.icon,
+                        id: e.id,
+                        selected: e.id == controller.itemSelected,
+                      ),
                     ),
-                  ),
-                )
-                .toList(),
-          ).animate().slideX(
-              duration: 500.ms,
-              delay: 0.ms,
-              begin: 1,
-              end: 0,
-              curve: Curves.easeInOutSine),
-        );
+                  )
+                  .toList(),
+            ).animate().slideX(
+                duration: 500.ms,
+                delay: 0.ms,
+                begin: 1,
+                end: 0,
+                curve: Curves.easeInOutSine));
       },
     );
   }
@@ -190,18 +194,19 @@ class _ListSubTiposWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-        runSpacing: 6.0,
-        children: subtiposFiltrados
-            .map(
-              (e) => Padding(
-                padding: const EdgeInsets.only(right: 4.0),
-                child: CardSubTipos(
-                  id: e.id,
-                  descricao: e.grupo,
-                  icon: '',
-                ),
+      runSpacing: 6.0,
+      children: subtiposFiltrados
+          .map(
+            (e) => Padding(
+              padding: const EdgeInsets.only(right: 4.0),
+              child: CardSubTipos(
+                id: e.id,
+                descricao: e.grupo,
+                icon: '',
               ),
-            )
-            .toList());
+            ),
+          )
+          .toList(),
+    );
   }
 }
