@@ -1,3 +1,4 @@
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:propagou/app/models/subtipo_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,6 +16,8 @@ class SixPage extends StatefulWidget {
 class _SixPageState extends State<SixPage> {
   late RegisterModel registerModel;
   List<String> response = [];
+
+  final testeEC = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -57,24 +60,25 @@ class _SixPageState extends State<SixPage> {
                     subTitle: 'Informe Sua Categoria e Classificação',
                   ),
                   const SizedBox(height: 10),
-                  Column(
-                    children: [
-                      DropdownButton<String>(
-                        isDense: true,
-                        value: selectedOption,
-                        onChanged: (newValue) {
-                          setState(() {
-                            selectedOption = newValue;
-                          });
-                        },
-                        items: response.map((option) {
-                          return DropdownMenuItem<String>(
-                            value: option,
-                            child: Text(option),
-                          );
-                        }).toList(),
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      children: [
+                        CustomDropdown.search(
+                            listItemStyle: const TextStyle(fontSize: 13),
+                            borderSide: const BorderSide(
+                              width: 1,
+                            ),
+                            controller: testeEC,
+                            hintText: 'Selecione o Serviço',
+                            onChanged: (newValue) {
+                              setState(() {
+                                selectedOption = newValue;
+                              });
+                            },
+                            items: response),
+                      ],
+                    ),
                   ),
                 ],
               ),

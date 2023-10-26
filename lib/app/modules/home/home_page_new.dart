@@ -67,16 +67,20 @@ class _HomePageNewState extends State<HomePageNew> {
             body: SafeArea(
               child: Stack(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 20, left: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, left: 20),
                     child: Align(
                       alignment: Alignment.topLeft,
-                      child: Icon(
-                        Icons.menu,
-                        color: ColorConstants.primary,
+                      child: Text(
+                        'PROPAGOU',
+                        style: context.textStyles.textPrimaryFontBold.copyWith(
+                          fontSize: 22,
+                          color: ColorConstants.primary,
+                        ),
                       ),
                     ),
                   ),
+
                   Padding(
                     padding: const EdgeInsets.only(top: 20, right: 20),
                     child: Align(
@@ -89,11 +93,11 @@ class _HomePageNewState extends State<HomePageNew> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 60, left: 20),
+                    padding: const EdgeInsets.only(top: 70, left: 20),
                     child: Text(
-                      'PROPAGOU',
+                      'SERVIÇOS',
                       style: context.textStyles.textPrimaryFontBold.copyWith(
-                        fontSize: 22,
+                        fontSize: 16,
                         color: ColorConstants.primary,
                       ),
                     ),
@@ -110,11 +114,10 @@ class _HomePageNewState extends State<HomePageNew> {
                   Padding(
                     padding: const EdgeInsets.only(top: 210, left: 20),
                     child: Text(
-                      'Categorias',
+                      'CATEGORIAS',
                       style: context.textStyles.textPrimaryFontBold.copyWith(
-                        fontSize: 14,
+                        fontSize: 15,
                         color: ColorConstants.primary,
-                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
@@ -194,7 +197,10 @@ class _ListSubTiposWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      runSpacing: 6.0,
+      alignment: WrapAlignment.start,
+      direction: Axis.horizontal,
+      runSpacing: 2.0,
+      spacing: 2.0,
       children: subtiposFiltrados
           .map(
             (e) => Padding(
