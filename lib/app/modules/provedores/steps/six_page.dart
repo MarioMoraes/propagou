@@ -1,5 +1,6 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:propagou/app/core/constants/color_constants.dart';
 import 'package:propagou/app/modules/provedores/controller/provedor/provedor_state.dart';
 
@@ -7,9 +8,7 @@ import '../../../core/widgets/box_title.dart';
 import '../../../models/register_model.dart';
 
 class SixPage extends StatefulWidget {
-  final ProvedorController provedorController;
-
-  const SixPage({super.key, required this.provedorController});
+  const SixPage({super.key});
 
   @override
   State<SixPage> createState() => _SixPageState();
@@ -17,8 +16,8 @@ class SixPage extends StatefulWidget {
 
 class _SixPageState extends State<SixPage> {
   late RegisterModel registerModel;
-  List<String> responseTp = [''];
-  List<String> responseSub = [''];
+
+  final ProvedorController provedorController = ProvedorController();
 
   final _tipoEC = TextEditingController();
   final _subtipoEC = TextEditingController();
@@ -42,7 +41,7 @@ class _SixPageState extends State<SixPage> {
   }
 
   _initLoad() async {
-    await widget.provedorController.loadTipos();
+    await provedorController.loadTipos();
   }
 
   @override
@@ -69,43 +68,59 @@ class _SixPageState extends State<SixPage> {
                     padding: const EdgeInsets.all(10.0),
                     child: Column(
                       children: [
-                        CustomDropdown(
-                          hintStyle: const TextStyle(
-                              fontSize: 13, color: ColorConstants.primary),
-                          listItemStyle: const TextStyle(
-                              fontSize: 13, color: ColorConstants.primary),
-                          borderSide: const BorderSide(
-                              width: 1, color: ColorConstants.primary),
-                          controller: _tipoEC,
-                          hintText: 'Selecione a Categoria',
-                          onChanged: (newValue) {
-                            setState(() {
-                              selectedOption = newValue;
-                              widget.provedorController
-                                  .loadSubtipos(id: _tipoEC.text);
-                            });
+                        BlocSelector<ProvedorController, ProvedorState,
+                            List<String>>(
+                          bloc: provedorController,
+                          selector: (state) => state.tipos,
+                          builder: (context, state) {
+                            return CustomDropdown(
+                              hintStyle: const TextStyle(
+                                  fontSize: 13, color: ColorConstants.primary),
+                              listItemStyle: const TextStyle(
+                                  fontSize: 13, color: ColorConstants.primary),
+                              borderSide: const BorderSide(
+                                  width: 1, color: ColorConstants.primary),
+                              controller: _tipoEC,
+                              hintText: 'Selecione a Categoria',
+                              onChanged: (newValue) {
+                                setState(() {
+                                  selectedOption = newValue;
+                                  provedorController.loadSubtipos(
+                                      id: _tipoEC.text);
+                                });
+                              },
+                              items: state,
+                            );
                           },
-                          items: responseTp,
                         ),
                         const SizedBox(
                           height: 10,
                         ),
-                        CustomDropdown(
-                          hintStyle: const TextStyle(
-                              fontSize: 13, color: ColorConstants.primary),
-                          listItemStyle: const TextStyle(
-                              fontSize: 13, color: ColorConstants.primary),
-                          borderSide: const BorderSide(
-                              width: 1, color: ColorConstants.primary),
-                          controller: _subtipoEC,
-                          hintText: 'Selecione o Serviço Prestado',
-                          onChanged: (newValue) {
-                            setState(() {
-                              selectedOption = newValue;
-                            });
+                        /*
+                        BlocSelector<ProvedorController, ProvedorState,
+                            List<String>>(
+                          bloc: provedorController,
+                          selector: (state) => state.subtipos,
+                          builder: (context, state) {
+                            return CustomDropdown(
+                              hintStyle: const TextStyle(
+                                  fontSize: 13, color: ColorConstants.primary),
+                              listItemStyle: const TextStyle(
+                                  fontSize: 13, color: ColorConstants.primary),
+                              borderSide: const BorderSide(
+                                  width: 1, color: ColorConstants.primary),
+                              controller: _subtipoEC,
+                              hintText: 'Selecione o Serviço Prestado',
+                              onChanged: (newValue) {
+                                setState(() {
+                                  selectedOption = newValue;
+                                });
+                              },
+                              items: state,
+                            );
                           },
-                          items: responseSub,
                         ),
+                        */
                       ],
                     ),
                   ),

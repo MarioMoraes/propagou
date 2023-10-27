@@ -9,8 +9,8 @@ class ProvedorController extends Cubit<ProvedorState> {
     emit(
       state.copyWith(
         status: ProvedorStatus.initial,
-        tipos: [],
-        subtipos: [],
+        tipos: [''],
+        subtipos: [''],
       ),
     );
 
