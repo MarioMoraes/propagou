@@ -1,15 +1,15 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:propagou/app/core/constants/color_constants.dart';
-import 'package:propagou/app/models/subtipo_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:propagou/app/modules/provedores/controller/provedor/provedor_state.dart';
 
 import '../../../core/widgets/box_title.dart';
 import '../../../models/register_model.dart';
-import '../../../models/tipo_model.dart';
 
 class SixPage extends StatefulWidget {
-  const SixPage({super.key});
+  final ProvedorController provedorController;
+
+  const SixPage({super.key, required this.provedorController});
 
   @override
   State<SixPage> createState() => _SixPageState();
@@ -42,7 +42,7 @@ class _SixPageState extends State<SixPage> {
   }
 
   _initLoad() async {
-    await _loadTipos();
+    await widget.provedorController.loadTipos();
   }
 
   @override
@@ -81,7 +81,8 @@ class _SixPageState extends State<SixPage> {
                           onChanged: (newValue) {
                             setState(() {
                               selectedOption = newValue;
-                              _loadSubtipos(id: _tipoEC.text);
+                              widget.provedorController
+                                  .loadSubtipos(id: _tipoEC.text);
                             });
                           },
                           items: responseTp,
@@ -149,51 +150,5 @@ class _SixPageState extends State<SixPage> {
         ),
       ),
     );
-  }
-
-  Future<void> _loadTipos() async {
-    // Load Tipos
-    List<TipoModel> responseTemp;
-
-    final sp = await SharedPreferences.getInstance();
-
-    if (sp.getStringList('tipos') != null) {
-      List<String> responseSaved = sp.getStringList('tipos') as List<String>;
-      setState(() {
-        responseTemp = responseSaved
-            .map((notification) => TipoModel.fromJson(notification))
-            .toList();
-
-        responseTp = responseTemp.map((item) => item.descricao).toList();
-      });
-    }
-  }
-
-  Future<void> _loadSubtipos({required String id}) async {
-    // Load Subtipos
-    List<SubTipoModel> responseTmp;
-
-    final sp = await SharedPreferences.getInstance();
-
-    List<String> responseSaved = sp.getStringList('tipos') as List<String>;
-    final jsonTmp = responseSaved
-        .map((notification) => TipoModel.fromJson(notification))
-        .toList();
-
-    final found = jsonTmp.where((element) => element.descricao == id);
-
-    if (sp.getStringList('subtipos') != null) {
-      List<String> responseSaved = sp.getStringList('subtipos') as List<String>;
-      setState(() {
-        responseTmp = responseSaved
-            .map((notification) => SubTipoModel.fromJson(notification))
-            .toList();
-
-        final responseJson =
-            responseTmp.where((element) => element.grupoId == found.single.id);
-
-        responseSub = responseJson.map((item) => item.grupo).toList();
-      });
-    }
   }
 }
