@@ -1,10 +1,12 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:propagou/app/core/constants/color_constants.dart';
 import 'package:propagou/app/models/subtipo_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/widgets/box_title.dart';
 import '../../../models/register_model.dart';
+import '../../../models/tipo_model.dart';
 
 class SixPage extends StatefulWidget {
   const SixPage({super.key});
@@ -15,9 +17,11 @@ class SixPage extends StatefulWidget {
 
 class _SixPageState extends State<SixPage> {
   late RegisterModel registerModel;
-  List<String> response = [];
+  List<String> responseTp = [''];
+  List<String> responseSub = [''];
 
-  final testeEC = TextEditingController();
+  final _tipoEC = TextEditingController();
+  final _subtipoEC = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -26,6 +30,7 @@ class _SixPageState extends State<SixPage> {
   @override
   void initState() {
     super.initState();
+
     _initLoad();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -37,7 +42,7 @@ class _SixPageState extends State<SixPage> {
   }
 
   _initLoad() async {
-    await _loadData();
+    await _loadTipos();
   }
 
   @override
@@ -64,19 +69,42 @@ class _SixPageState extends State<SixPage> {
                     padding: const EdgeInsets.all(10.0),
                     child: Column(
                       children: [
-                        CustomDropdown.search(
-                            listItemStyle: const TextStyle(fontSize: 13),
-                            borderSide: const BorderSide(
-                              width: 1,
-                            ),
-                            controller: testeEC,
-                            hintText: 'Selecione o Serviço',
-                            onChanged: (newValue) {
-                              setState(() {
-                                selectedOption = newValue;
-                              });
-                            },
-                            items: response),
+                        CustomDropdown(
+                          hintStyle: const TextStyle(
+                              fontSize: 13, color: ColorConstants.primary),
+                          listItemStyle: const TextStyle(
+                              fontSize: 13, color: ColorConstants.primary),
+                          borderSide: const BorderSide(
+                              width: 1, color: ColorConstants.primary),
+                          controller: _tipoEC,
+                          hintText: 'Selecione a Categoria',
+                          onChanged: (newValue) {
+                            setState(() {
+                              selectedOption = newValue;
+                              _loadSubtipos(id: _tipoEC.text);
+                            });
+                          },
+                          items: responseTp,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        CustomDropdown(
+                          hintStyle: const TextStyle(
+                              fontSize: 13, color: ColorConstants.primary),
+                          listItemStyle: const TextStyle(
+                              fontSize: 13, color: ColorConstants.primary),
+                          borderSide: const BorderSide(
+                              width: 1, color: ColorConstants.primary),
+                          controller: _subtipoEC,
+                          hintText: 'Selecione o Serviço Prestado',
+                          onChanged: (newValue) {
+                            setState(() {
+                              selectedOption = newValue;
+                            });
+                          },
+                          items: responseSub,
+                        ),
                       ],
                     ),
                   ),
@@ -123,18 +151,48 @@ class _SixPageState extends State<SixPage> {
     );
   }
 
-  Future<void> _loadData() async {
-    List<SubTipoModel> responseTemp;
+  Future<void> _loadTipos() async {
+    // Load Tipos
+    List<TipoModel> responseTemp;
 
     final sp = await SharedPreferences.getInstance();
+
+    if (sp.getStringList('tipos') != null) {
+      List<String> responseSaved = sp.getStringList('tipos') as List<String>;
+      setState(() {
+        responseTemp = responseSaved
+            .map((notification) => TipoModel.fromJson(notification))
+            .toList();
+
+        responseTp = responseTemp.map((item) => item.descricao).toList();
+      });
+    }
+  }
+
+  Future<void> _loadSubtipos({required String id}) async {
+    // Load Subtipos
+    List<SubTipoModel> responseTmp;
+
+    final sp = await SharedPreferences.getInstance();
+
+    List<String> responseSaved = sp.getStringList('tipos') as List<String>;
+    final jsonTmp = responseSaved
+        .map((notification) => TipoModel.fromJson(notification))
+        .toList();
+
+    final found = jsonTmp.where((element) => element.descricao == id);
+
     if (sp.getStringList('subtipos') != null) {
       List<String> responseSaved = sp.getStringList('subtipos') as List<String>;
       setState(() {
-        responseTemp = responseSaved
+        responseTmp = responseSaved
             .map((notification) => SubTipoModel.fromJson(notification))
             .toList();
 
-        response = responseTemp.map((item) => item.grupo).toList();
+        final responseJson =
+            responseTmp.where((element) => element.grupoId == found.single.id);
+
+        responseSub = responseJson.map((item) => item.grupo).toList();
       });
     }
   }
