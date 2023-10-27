@@ -96,7 +96,6 @@ class _SixPageState extends State<SixPage> {
                         const SizedBox(
                           height: 10,
                         ),
-                        /*
                         BlocSelector<ProvedorController, ProvedorState,
                             List<String>>(
                           bloc: provedorController,
@@ -120,7 +119,6 @@ class _SixPageState extends State<SixPage> {
                             );
                           },
                         ),
-                        */
                       ],
                     ),
                   ),

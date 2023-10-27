@@ -30,7 +30,7 @@ class ProvedorController extends Cubit<ProvedorState> {
         state.copyWith(
           status: ProvedorStatus.completed,
           tipos: responseTp,
-          subtipos: [],
+          subtipos: [''],
         ),
       );
     }
@@ -42,7 +42,7 @@ class ProvedorController extends Cubit<ProvedorState> {
     emit(
       state.copyWith(
         status: ProvedorStatus.loading,
-        subtipos: [],
+        subtipos: [''],
       ),
     );
 

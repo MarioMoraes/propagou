@@ -30,8 +30,8 @@ class ProvedorState extends Equatable {
   ProvedorState.initial()
       : this._(
           status: ProvedorStatus.initial,
-          tipos: [],
-          subtipos: [],
+          tipos: [''],
+          subtipos: [''],
         );
 
   @override
