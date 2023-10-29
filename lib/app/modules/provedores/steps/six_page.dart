@@ -33,10 +33,8 @@ class _SixPageState extends State<SixPage> {
     _initLoad();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      /*
       registerModel =
           ModalRoute.of(context)?.settings.arguments as RegisterModel;
-      */
     });
   }
 
@@ -51,6 +49,9 @@ class _SixPageState extends State<SixPage> {
 
   @override
   Widget build(BuildContext context) {
+    const styleText14 = TextStyle(fontSize: 14, color: ColorConstants.primary);
+    const styleText13 = TextStyle(fontSize: 13, color: ColorConstants.primary);
+
     return Scaffold(
       body: Form(
         key: _formKey,
@@ -74,12 +75,13 @@ class _SixPageState extends State<SixPage> {
                           selector: (state) => state.tipos,
                           builder: (context, state) {
                             return CustomDropdown(
-                              hintStyle: const TextStyle(
-                                  fontSize: 13, color: ColorConstants.primary),
-                              listItemStyle: const TextStyle(
-                                  fontSize: 13, color: ColorConstants.primary),
+                              selectedStyle: styleText14,
+                              hintStyle: styleText13,
+                              listItemStyle: styleText13,
                               borderSide: const BorderSide(
-                                  width: 1, color: ColorConstants.primary),
+                                width: 1,
+                                color: ColorConstants.primary,
+                              ),
                               controller: _tipoEC,
                               hintText: 'Selecione a Categoria',
                               onChanged: (newValue) {
@@ -102,12 +104,13 @@ class _SixPageState extends State<SixPage> {
                           selector: (state) => state.subtipos,
                           builder: (context, state) {
                             return CustomDropdown(
-                              hintStyle: const TextStyle(
-                                  fontSize: 13, color: ColorConstants.primary),
-                              listItemStyle: const TextStyle(
-                                  fontSize: 13, color: ColorConstants.primary),
+                              selectedStyle: styleText14,
+                              hintStyle: styleText13,
+                              listItemStyle: styleText13,
                               borderSide: const BorderSide(
-                                  width: 1, color: ColorConstants.primary),
+                                width: 1,
+                                color: ColorConstants.primary,
+                              ),
                               controller: _subtipoEC,
                               hintText: 'Selecione o Serviço Prestado',
                               onChanged: (newValue) {

@@ -74,8 +74,9 @@ class _HomePageNewState extends State<HomePageNew> {
                       child: Text(
                         'PROPAGOU',
                         style: context.textStyles.textPrimaryFontBold.copyWith(
-                          fontSize: 22,
+                          fontSize: 26,
                           color: ColorConstants.primary,
+                          letterSpacing: 1,
                         ),
                       ),
                     ),
@@ -89,7 +90,7 @@ class _HomePageNewState extends State<HomePageNew> {
                           onTap: () =>
                               Navigator.of(context).pushNamed('/provedor'),
                           child: const CircleAvatar(
-                              child: Icon(Icons.verified_user))),
+                              child: Icon(Icons.add_reaction))),
                     ),
                   ),
                   Padding(

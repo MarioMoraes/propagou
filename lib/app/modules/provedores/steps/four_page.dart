@@ -108,7 +108,7 @@ class _FourPageState extends State<FourPage> {
                             phoneNumber: _phoneEC.text,
                           );
 
-                          Navigator.pushNamed(context, '/five',
+                          Navigator.pushNamed(context, '/seven',
                               arguments: model);
                         }
                       },
