@@ -21,11 +21,11 @@ class _FivePageState extends State<FivePage> {
 
   @override
   void initState() {
+    super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       registerModel =
           ModalRoute.of(context)?.settings.arguments as RegisterModel;
     });
-    super.initState();
   }
 
   @override

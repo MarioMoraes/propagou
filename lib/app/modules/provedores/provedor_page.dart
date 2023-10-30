@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:propagou/app/modules/provedores/controller/cep_state.dart';
 import 'package:propagou/app/modules/provedores/steps/five_page.dart';
 import 'package:propagou/app/modules/provedores/steps/four_page.dart';
+import 'package:propagou/app/modules/provedores/steps/one_page.dart';
 import 'package:propagou/app/modules/provedores/steps/seven_page.dart';
 import 'package:propagou/app/modules/provedores/steps/six_page.dart';
 
@@ -28,7 +29,7 @@ class _ProvedorPageState extends State<ProvedorPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Cadastro'),
+        title: const Text('Cadastro de Prestadores'),
         toolbarHeight: 80,
         centerTitle: true,
       ),
@@ -40,7 +41,7 @@ class _ProvedorPageState extends State<ProvedorPage> {
 
           switch (route) {
             case '/one':
-              page = const SevenPage();
+              page = const OnePage();
               break;
             case '/two':
               page = TwoPage(provedorController: widget.controller);

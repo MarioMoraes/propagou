@@ -151,10 +151,13 @@ class _SixPageState extends State<SixPage> {
                       child: ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState?.validate() ?? false) {
-                            Navigator.pushNamed(
-                              context,
-                              '/four',
+                            var model = registerModel.copyWith(
+                              servico: _tipoEC.text,
+                              classificao: _subtipoEC.text,
                             );
+
+                            Navigator.pushNamed(context, '/four',
+                                arguments: model);
                           }
                         },
                         child: const Text('AVANÇAR'),
