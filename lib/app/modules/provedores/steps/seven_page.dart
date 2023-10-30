@@ -62,34 +62,38 @@ class _SevenPageState extends State<SevenPage> {
                     },
                   ),
                   const SizedBox(
-                    height: 50,
-                  ),
-                  Center(
-                    child: Visibility(
-                      visible: _ended,
-                      child: const Text(
-                        'Cadastro Concluído!',
-                        style: TextStyle(
-                          fontSize: 22,
-                          color: ColorConstants.primary,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      )
-                          .animate()
-                          .scaleXY(
-                            begin: 0.0,
-                            end: 1.0,
-                            duration: 500.ms,
-                            curve: Curves.decelerate,
-                          )
-                          .fadeIn()
-                          .blurXY(begin: 10, end: 0),
-                    ),
+                    height: 70,
                   ),
                   Visibility(
                     visible: _ended,
-                    child: Lottie.asset('assets/lottie/confirm.json'),
-                  )
+                    child: SizedBox(
+                        width: 100,
+                        height: 100,
+                        child: Lottie.asset('assets/lottie/confirm.json')),
+                  ),
+                  const SizedBox(
+                    height: 80,
+                  ),
+                  Center(
+                    child: Visibility(
+                        visible: _ended,
+                        child: const Text(
+                          'Cadastro Concluído!',
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: ColorConstants.primary,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        )
+                            .animate()
+                            .scaleXY(
+                              begin: 0.0,
+                              end: 1.0,
+                              duration: 500.ms,
+                              curve: Curves.decelerate,
+                            )
+                            .fadeIn()),
+                  ),
                 ],
               ),
             ),

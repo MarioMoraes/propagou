@@ -91,7 +91,7 @@ class _FivePageState extends State<FivePage> {
                       child: ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState?.validate() ?? false) {
-                            var model = RegisterModel(
+                            var model = registerModel.copyWith(
                               instagram: _instagramEC.text,
                               facebook: _facebookEC.text,
                             );
