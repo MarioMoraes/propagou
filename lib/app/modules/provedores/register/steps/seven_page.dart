@@ -6,9 +6,9 @@ import 'package:lottie/lottie.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
-import '../../../core/constants/color_constants.dart';
-import '../../../core/widgets/box_title.dart';
-import '../../../models/register_model.dart';
+import '../../../../core/constants/color_constants.dart';
+import '../../../../core/widgets/box_title.dart';
+import '../../../../models/register_model.dart';
 
 class SevenPage extends StatefulWidget {
   const SevenPage({super.key});

@@ -5,7 +5,7 @@ import 'package:propagou/app/core/widgets/custom_input.dart';
 import 'package:propagou/app/models/register_model.dart';
 import 'package:validatorless/validatorless.dart';
 
-import '../../../core/widgets/box_title.dart';
+import '../../../../core/widgets/box_title.dart';
 
 class ThreePage extends StatefulWidget {
   const ThreePage({Key? key}) : super(key: key);

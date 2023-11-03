@@ -3,8 +3,8 @@ import 'package:equatable/equatable.dart';
 import 'package:propagou/app/models/cep_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../models/subtipo_model.dart';
-import '../../../../models/tipo_model.dart';
+import '../../../models/subtipo_model.dart';
+import '../../../models/tipo_model.dart';
 
 part 'provedor_controller.dart';
 

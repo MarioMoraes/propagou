@@ -3,8 +3,8 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:propagou/app/models/register_model.dart';
 import 'package:validatorless/validatorless.dart';
 
-import '../../../core/widgets/box_title.dart';
-import '../../../core/widgets/custom_input.dart';
+import '../../../../core/widgets/box_title.dart';
+import '../../../../core/widgets/custom_input.dart';
 
 class FourPage extends StatefulWidget {
   const FourPage({Key? key}) : super(key: key);

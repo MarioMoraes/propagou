@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:propagou/app/core/helpers/messages.dart';
+import 'package:propagou/app/core/widgets/box_title.dart';
 import 'package:propagou/app/models/register_model.dart';
-import 'package:propagou/app/modules/provedores/controller/cep_state.dart';
 import 'package:validatorless/validatorless.dart';
 
-import '../../../core/widgets/box_title.dart';
-import '../../../core/widgets/custom_input.dart';
-import '../../../core/widgets/custom_show.dart';
-import '../../../models/cep_model.dart';
+import '../../../../core/widgets/custom_input.dart';
+import '../../../../core/widgets/custom_show.dart';
+import '../../../../models/cep_model.dart';
+import '../../controller/cep_state.dart';
 
 class TwoPage extends StatefulWidget {
   final CepController provedorController;

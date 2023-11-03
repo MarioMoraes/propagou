@@ -2,10 +2,10 @@ import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:propagou/app/core/constants/color_constants.dart';
-import 'package:propagou/app/modules/provedores/controller/provedor/provedor_state.dart';
 
-import '../../../core/widgets/box_title.dart';
-import '../../../models/register_model.dart';
+import '../../../../core/widgets/box_title.dart';
+import '../../../../models/register_model.dart';
+import '../../controller/provedor_state.dart';
 
 class SixPage extends StatefulWidget {
   const SixPage({super.key});
@@ -153,7 +153,7 @@ class _SixPageState extends State<SixPage> {
                           if (_formKey.currentState?.validate() ?? false) {
                             var model = registerModel.copyWith(
                               servico: _tipoEC.text,
-                              classificao: _subtipoEC.text,
+                              classificacao: _subtipoEC.text,
                             );
 
                             Navigator.pushNamed(context, '/four',

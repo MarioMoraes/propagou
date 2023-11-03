@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:validatorless/validatorless.dart';
 
-import '../../../core/widgets/box_title.dart';
-import '../../../core/widgets/custom_input.dart';
-import '../../../models/register_model.dart';
+import '../../../../core/widgets/box_title.dart';
+import '../../../../core/widgets/custom_input.dart';
+import '../../../../models/register_model.dart';
 
 class FivePage extends StatefulWidget {
   const FivePage({super.key});
