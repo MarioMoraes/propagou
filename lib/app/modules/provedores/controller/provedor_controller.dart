@@ -1,7 +1,10 @@
 part of 'provedor_state.dart';
 
 class ProvedorController extends Cubit<ProvedorState> {
-  ProvedorController() : super(ProvedorState.initial());
+  final ListProvedoresService listProvedoresService;
+
+  ProvedorController({required this.listProvedoresService})
+      : super(ProvedorState.initial());
 
   Future<void> loadTipos() async {
     List<TipoModel> responseTemp;
@@ -74,5 +77,14 @@ class ProvedorController extends Cubit<ProvedorState> {
         ),
       );
     }
+  }
+
+  Future<void> getProvedores(String tipo, String classificacao) async {
+    emit(state.copyWith(status: ProvedorStatus.loading));
+    final response =
+        await listProvedoresService.getProvedores(tipo, classificacao);
+
+    emit(
+        state.copyWith(provedores: response, status: ProvedorStatus.completed));
   }
 }

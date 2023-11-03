@@ -88,7 +88,7 @@ class _HomePageNewState extends State<HomePageNew> {
                       alignment: Alignment.topRight,
                       child: GestureDetector(
                           onTap: () =>
-                              Navigator.of(context).pushNamed('/provedor'),
+                              Navigator.of(context).pushNamed('/provedor/list'),
                           child: const CircleAvatar(
                               child: Icon(Icons.add_reaction))),
                     ),

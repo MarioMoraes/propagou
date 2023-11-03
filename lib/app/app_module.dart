@@ -5,6 +5,7 @@ import 'package:propagou/app/modules/splash/splash_module.dart';
 import 'package:propagou/app/modules/subtipos/subtipos_module.dart';
 
 import 'core/local_storage/local_storage.dart';
+import 'modules/provedores/provedor_list_module.dart';
 import 'modules/provedores/provedor_module.dart';
 
 class AppModule extends Module {
@@ -21,6 +22,7 @@ class AppModule extends Module {
         ModuleRoute('/', module: SplashModule()),
         ModuleRoute('/home', module: HomeModule()),
         ModuleRoute('/subtipos', module: SubtiposModule()),
-        ModuleRoute('/provedor', module: ProvedorModule())
+        ModuleRoute('/provedor/register', module: ProvedorModule()),
+        ModuleRoute('/provedor/list', module: ProvedorListModule()),
       ];
 }

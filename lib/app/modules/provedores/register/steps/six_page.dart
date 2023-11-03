@@ -1,7 +1,9 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:propagou/app/core/constants/color_constants.dart';
+import 'package:propagou/app/service/provedores/cep/provedores/list_provedores_service.dart';
 
 import '../../../../core/widgets/box_title.dart';
 import '../../../../models/register_model.dart';
@@ -17,7 +19,8 @@ class SixPage extends StatefulWidget {
 class _SixPageState extends State<SixPage> {
   late RegisterModel registerModel;
 
-  final ProvedorController provedorController = ProvedorController();
+  final ProvedorController provedorController = ProvedorController(
+      listProvedoresService: Modular.get<ListProvedoresService>());
 
   final _tipoEC = TextEditingController();
   final _subtipoEC = TextEditingController();

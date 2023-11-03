@@ -5,9 +5,9 @@ import 'package:propagou/app/modules/provedores/register/steps/one_page.dart';
 import 'package:propagou/app/modules/provedores/register/steps/seven_page.dart';
 import 'package:propagou/app/modules/provedores/register/steps/six_page.dart';
 
-import 'controller/cep_state.dart';
-import 'register/steps/three_page.dart';
-import 'register/steps/two_page.dart';
+import '../controller/cep_state.dart';
+import 'steps/three_page.dart';
+import 'steps/two_page.dart';
 
 class ProvedorPage extends StatefulWidget {
   final CepController controller;
