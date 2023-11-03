@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
@@ -47,7 +48,7 @@ class _SevenPageState extends State<SevenPage> {
                     title: 'Autenticação',
                     subTitle: 'Confirme o código que você recebeu pelo SMS',
                   ),
-                  const SizedBox(height: 50),
+                  const Gap(50),
                   OTPTextField(
                     length: 5,
                     width: MediaQuery.of(context).size.width / 2,
@@ -61,9 +62,7 @@ class _SevenPageState extends State<SevenPage> {
                       });
                     },
                   ),
-                  const SizedBox(
-                    height: 70,
-                  ),
+                  const Gap(70),
                   Visibility(
                     visible: _ended,
                     child: SizedBox(
@@ -71,9 +70,7 @@ class _SevenPageState extends State<SevenPage> {
                         height: 100,
                         child: Lottie.asset('assets/lottie/confirm.json')),
                   ),
-                  const SizedBox(
-                    height: 80,
-                  ),
+                  const Gap(80),
                   Center(
                     child: Visibility(
                         visible: _ended,

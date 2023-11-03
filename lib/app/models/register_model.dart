@@ -11,7 +11,7 @@ class RegisterModel {
   final String? instagram;
   final String? facebook;
   final String? servico;
-  final String? classificao;
+  final String? classificacao;
 
   RegisterModel({
     this.nome,
@@ -26,7 +26,7 @@ class RegisterModel {
     this.instagram,
     this.facebook,
     this.servico,
-    this.classificao,
+    this.classificacao,
   });
 
   RegisterModel copyWith({
@@ -42,7 +42,7 @@ class RegisterModel {
     String? instagram,
     String? facebook,
     String? servico,
-    String? classificao,
+    String? classificacao,
   }) {
     return RegisterModel(
       nome: nome ?? this.nome,
@@ -57,12 +57,12 @@ class RegisterModel {
       instagram: instagram ?? this.instagram,
       facebook: facebook ?? this.facebook,
       servico: servico ?? this.servico,
-      classificao: classificao ?? this.classificao,
+      classificacao: classificacao ?? this.classificacao,
     );
   }
 
   @override
   String toString() {
-    return 'RegisterModel(nome: $nome, cep: $cep, endereco: $endereco, numero: $numero, bairro: $bairro, cidade: $cidade, doc: $doc, email: $email, phoneNumber: $phoneNumber, instagram: $instagram, facebook: $facebook, servico: $servico, classificao: $classificao)';
+    return 'RegisterModel(nome: $nome, cep: $cep, endereco: $endereco, numero: $numero, bairro: $bairro, cidade: $cidade, doc: $doc, email: $email, phoneNumber: $phoneNumber, instagram: $instagram, facebook: $facebook, servico: $servico, classificacao: $classificacao)';
   }
 }
