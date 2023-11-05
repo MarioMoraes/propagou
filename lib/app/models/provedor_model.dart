@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class ProvedorModel {
-  final int id;
+  final String id;
   final String nome;
   final String cep;
   final String endereco;
@@ -54,7 +54,7 @@ class ProvedorModel {
 
   factory ProvedorModel.fromMap(Map<String, dynamic> map) {
     return ProvedorModel(
-      id: map['id'] as int,
+      id: map['id'] as String,
       nome: map['nome'] as String,
       cep: map['cep'] as String,
       endereco: map['endereco'] as String,
