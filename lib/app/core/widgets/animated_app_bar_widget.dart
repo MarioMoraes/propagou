@@ -15,35 +15,33 @@ class AnimatedAppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_new,
-              size: 25,
-            )),
-        Text(
-          name,
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge!
-              .copyWith(color: Colors.black),
-        ),
-        IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.favorite_outline,
-              size: 25,
-            ))
-      ].animate(interval: 200.ms, delay: appBarDelayTime).scaleXY(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(
+                Icons.arrow_back_ios_new,
+                size: 25,
+              )),
+          Text(
+            name,
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge!
+                .copyWith(color: Colors.black),
+          ),
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.menu,
+                size: 25,
+              ))
+        ].animate(interval: 200.ms, delay: appBarDelayTime).scaleXY(
             begin: 0,
             end: 1,
             duration: appBarPlayTime,
-            curve: Curves.decelerate,
-          ),
-    );
+            curve: Curves.decelerate));
   }
 }

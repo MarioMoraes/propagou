@@ -80,11 +80,12 @@ class ProvedorController extends Cubit<ProvedorState> {
   }
 
   Future<void> getProvedores(String tipo, String classificacao) async {
-    emit(state.copyWith(status: ProvedorStatus.loading));
+    emit(state.copyWith(status: ProvedorStatus.loading, provedores: []));
     final response =
         await listProvedoresService.getProvedores(tipo, classificacao);
 
     emit(
-        state.copyWith(provedores: response, status: ProvedorStatus.completed));
+      state.copyWith(provedores: response, status: ProvedorStatus.completed),
+    );
   }
 }

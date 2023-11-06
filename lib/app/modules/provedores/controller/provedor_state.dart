@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:propagou/app/models/cep_model.dart';
 import 'package:propagou/app/models/provedor_model.dart';
 import 'package:propagou/app/service/provedores/cep/provedores/list_provedores_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,13 +21,13 @@ class ProvedorState extends Equatable {
   final ProvedorStatus status;
   final List<String> tipos;
   final List<String> subtipos;
-  final List<ProvedorModel>? provedores;
+  final List<ProvedorModel> provedores;
 
   const ProvedorState._({
     required this.tipos,
     required this.subtipos,
     required this.status,
-    this.provedores,
+    required this.provedores,
   });
 
   ProvedorState.initial()
@@ -36,13 +35,13 @@ class ProvedorState extends Equatable {
           status: ProvedorStatus.initial,
           tipos: [''],
           subtipos: [''],
+          provedores: [],
         );
 
   @override
-  List<Object?> get props => [status, tipos, subtipos];
+  List<Object?> get props => [status, tipos, subtipos, provedores];
 
   ProvedorState copyWith({
-    CepModel? cep,
     ProvedorStatus? status,
     List<String>? tipos,
     List<String>? subtipos,
