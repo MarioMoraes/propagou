@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
@@ -12,24 +11,20 @@ class ListProvedoresRepositoryImpl implements ListProvedoresRepository {
 
   @override
   Future<List<ProvedorModel>> getProvedores(
-      String tipo, String classificacao) async {
+    String tipo,
+    String classificacao,
+  ) async {
+    const url = String.fromEnvironment('backend_base_url');
+
     try {
-      final response = await _dio.get('http://localhost:8080/prestadores');
+      final response = await _dio.get('$url/prestadores');
 
-      final convert1 = jsonDecode(response.data);
-      print(convert1);
-      final convert2 = convert1.map((e) => ProvedorModel.fromMap(e));
-      print(convert2);
-      print('');
-
-//        return convert;
-//      } else {
-//        return throw RepositoryException();
-//      }
+      return response.data
+          .map<ProvedorModel>((e) => ProvedorModel.fromMap(e))
+          .toList();
     } on DioError catch (e, s) {
       log('error in list provedores', error: e, stackTrace: s);
       throw RepositoryException();
     }
-    return [];
   }
 }

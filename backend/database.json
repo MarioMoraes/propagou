@@ -1,7 +1,7 @@
 {
     "users": [
         {
-            "id": 0,
+            "id": "1",
             "name": "Mario Moraes",
             "email": "moraes_mario@hotmail.com",
             "password": "123456"
@@ -9,7 +9,7 @@
     ],
     "adm_users": [
         {
-            "id": 1,
+            "id": "1",
             "name": "Mario Moraes",
             "email": "moraes_mario@hotmail.com",
             "password": "123456",
@@ -18,7 +18,7 @@
     ],
     "prestadores": [
         {
-            "id": 0,
+            "id": "1",
             "nome": "Jose da Silva",
             "endereco":"Av Assis Figueiredo",
             "numero":"134",
@@ -26,14 +26,14 @@
             "cidade":"Poços de Caldas",
             "doc":"15459858801",
             "email":"mario@gmail.com",
-            "phone_numero":"35992527113",
+            "phone_number":"35992527113",
             "instagram":"@mario",
             "facebook":"mario_moraes",
             "servico":"8",
             "classificacao":"2"
         },
         {
-            "id": 1,
+            "id": "2",
             "nome": "Rodolfo Machado",
             "endereco":"Av Paulista",
             "numero":"50134",
@@ -41,9 +41,9 @@
             "cidade":"Sao Paulo",
             "doc":"15459858801",
             "email":"rodolfo@gmail.com",
-            "phone_numero":"35992508577",
+            "phone_number":"35992508577",
             "instagram":"@rodofo",
-            "facebook":"",
+            "facebook":"rodofmachado",
             "servico":"4",
             "classificacao":"1"
         }

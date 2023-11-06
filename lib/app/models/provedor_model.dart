@@ -3,7 +3,6 @@ import 'dart:convert';
 class ProvedorModel {
   final String id;
   final String nome;
-  final String cep;
   final String endereco;
   final String numero;
   final String bairro;
@@ -19,7 +18,6 @@ class ProvedorModel {
   ProvedorModel({
     required this.id,
     required this.nome,
-    required this.cep,
     required this.endereco,
     required this.numero,
     required this.bairro,
@@ -37,14 +35,13 @@ class ProvedorModel {
     return <String, dynamic>{
       'id': id,
       'nome': nome,
-      'cep': cep,
       'endereco': endereco,
       'numero': numero,
       'bairro': bairro,
       'cidade': cidade,
       'doc': doc,
       'email': email,
-      'phoneNumber': phoneNumber,
+      'phone_number': phoneNumber,
       'instagram': instagram,
       'facebook': facebook,
       'servico': servico,
@@ -56,14 +53,13 @@ class ProvedorModel {
     return ProvedorModel(
       id: map['id'] as String,
       nome: map['nome'] as String,
-      cep: map['cep'] as String,
       endereco: map['endereco'] as String,
       numero: map['numero'] as String,
       bairro: map['bairro'] as String,
       cidade: map['cidade'] as String,
       doc: map['doc'] as String,
       email: map['email'] as String,
-      phoneNumber: map['phoneNumber'] as String,
+      phoneNumber: map['phone_number'] as String,
       instagram: map['instagram'] as String,
       facebook: map['facebook'] as String,
       servico: map['servico'] as String,
