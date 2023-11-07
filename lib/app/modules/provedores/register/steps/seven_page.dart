@@ -106,8 +106,6 @@ class _SevenPageState extends State<SevenPage> {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        print(registerModel);
-
                         Modular.to
                             .pushNamedAndRemoveUntil('/home', (p0) => false);
                       },
