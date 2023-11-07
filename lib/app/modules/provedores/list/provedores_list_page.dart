@@ -44,14 +44,15 @@ class _ProvedoresListPageState extends State<ProvedoresListPage> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
                 dismissDirection: DismissDirection.startToEnd,
-                duration: const Duration(seconds: 5),
+                duration: const Duration(seconds: 10),
                 backgroundColor: const Color.fromARGB(255, 116, 33, 27),
                 action: SnackBarAction(
                     label: 'OK',
                     onPressed: () {
                       Modular.to.pop();
                     }),
-                content: const Icon(Icons.add)),
+                content: const Text(
+                    'Nenhum profissional cadastrado ainda nessa categoria!')),
           );
         }
       },
