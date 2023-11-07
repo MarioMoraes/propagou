@@ -9,8 +9,13 @@ import '../controller/provedor_state.dart';
 
 class ProvedoresListPage extends StatefulWidget {
   final ProvedorController provedorController;
+  final Map classificacao;
 
-  const ProvedoresListPage({super.key, required this.provedorController});
+  const ProvedoresListPage({
+    super.key,
+    required this.provedorController,
+    required this.classificacao,
+  });
 
   @override
   State<ProvedoresListPage> createState() => _ProvedoresListPageState();
@@ -24,7 +29,7 @@ class _ProvedoresListPageState extends State<ProvedoresListPage> {
   }
 
   Future<void> _loadData() async {
-    await widget.provedorController.getProvedores("2");
+    await widget.provedorController.getProvedores(widget.classificacao['id']);
   }
 
   @override
@@ -44,7 +49,7 @@ class _ProvedoresListPageState extends State<ProvedoresListPage> {
               expandedHeight: 80,
               centerTitle: true,
               title: AnimatedAppBarWidget(
-                name: 'Prestadores',
+                name: widget.classificacao['descricao'],
                 appBarPlayTime: 500.ms,
                 appBarDelayTime: 500.ms,
               ),

@@ -18,8 +18,8 @@ class CardSubTipos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Modular.to.pushNamed('/subtipos',
-          arguments: {'id': id, 'descricao': descricao, 'icon': icon}),
+      onTap: () => Modular.to.pushNamed('/provedor/list',
+          arguments: {"id": id, "descricao": descricao}),
       child: Container(
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.all(2),

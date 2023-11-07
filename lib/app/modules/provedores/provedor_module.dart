@@ -51,6 +51,7 @@ class ProvedorModule extends Module {
           Modular.initialRoute,
           child: (_, args) => ProvedoresListPage(
             provedorController: Modular.get<ProvedorController>(),
+            classificacao: args.data,
           ),
         ),
       ];
