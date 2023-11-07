@@ -11,13 +11,13 @@ class ListProvedoresRepositoryImpl implements ListProvedoresRepository {
 
   @override
   Future<List<ProvedorModel>> getProvedores(
-    String tipo,
     String classificacao,
   ) async {
     const url = String.fromEnvironment('backend_base_url');
 
     try {
-      final response = await _dio.get('$url/prestadores');
+      final response = await _dio.get('$url/prestadores',
+          queryParameters: {'classificacao': classificacao});
 
       return response.data
           .map<ProvedorModel>((e) => ProvedorModel.fromMap(e))

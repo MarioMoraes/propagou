@@ -8,9 +8,6 @@ class ListProvedoresServiceImpl implements ListProvedoresService {
   ListProvedoresServiceImpl({required this.listProvedoresRepository});
 
   @override
-  Future<List<ProvedorModel>> getProvedores(
-    String tipo,
-    String classificacao,
-  ) =>
-      listProvedoresRepository.getProvedores(tipo, classificacao);
+  Future<List<ProvedorModel>> getProvedores(String classificacao) =>
+      listProvedoresRepository.getProvedores(classificacao);
 }
