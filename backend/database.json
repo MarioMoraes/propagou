@@ -30,7 +30,7 @@
             "instagram":"@mario",
             "facebook":"mario_moraes",
             "servico":"8",
-            "classificacao":"25"
+            "classificacao":"32"
         },
         {
             "id": "2",
@@ -45,8 +45,70 @@
             "instagram":"@rodofo",
             "facebook":"rodofmachado",
             "servico":"4",
-            "classificacao":"23"
+            "classificacao":"33"
+        },
+        {
+            "id": "3",
+            "nome": "Mecanica Vila Cruz",
+            "endereco":"Av Normal",
+            "numero":"50134",
+            "bairro":"Vila Cruz",
+            "cidade":"Poços de Caldas",
+            "doc":"15459858801",
+            "email":"rodolfo@gmail.com",
+            "phone_number":"35992508577",
+            "instagram":"@rodofo",
+            "facebook":"rodofmachado",
+            "servico":"4",
+            "classificacao":"33"
+        },
+        {
+            "id": "2",
+            "nome": "Jonathan Guerra",
+            "endereco":"Av Paulista",
+            "numero":"50134",
+            "bairro":"Bela Vista",
+            "cidade":"Sao Paulo",
+            "doc":"15459858801",
+            "email":"rodolfo@gmail.com",
+            "phone_number":"35992508577",
+            "instagram":"@rodofo",
+            "facebook":"rodofmachado",
+            "servico":"4",
+            "classificacao":"35"
+        },
+        {
+            "id": "4",
+            "nome": "Rodolfo Machado",
+            "endereco":"Av Paulista",
+            "numero":"50134",
+            "bairro":"Bela Vista",
+            "cidade":"Sao Paulo",
+            "doc":"15459858801",
+            "email":"rodolfo@gmail.com",
+            "phone_number":"35992508577",
+            "instagram":"@rodofo",
+            "facebook":"rodofmachado",
+            "servico":"4",
+            "classificacao":"31"
+        },
+        {
+            "id": "5",
+            "nome": "Gerson Lima",
+            "endereco":"Av Paulista",
+            "numero":"50134",
+            "bairro":"Bela Vista",
+            "cidade":"Sao Paulo",
+            "doc":"15459858801",
+            "email":"rodolfo@gmail.com",
+            "phone_number":"35992508577",
+            "instagram":"@rodofo",
+            "facebook":"rodofmachado",
+            "servico":"4",
+            "classificacao":"34"
         }
+
+
     ]
 
 }

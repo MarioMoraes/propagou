@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:propagou/app/core/widgets/animated_app_bar_widget.dart';
 import 'package:propagou/app/models/provedor_model.dart';
 import 'package:propagou/app/modules/provedores/list/widgets/card_provedor.dart';
 
+import '../../../core/constants/color_constants.dart';
 import '../controller/provedor_state.dart';
 
 class ProvedoresListPage extends StatefulWidget {
@@ -54,24 +56,26 @@ class _ProvedoresListPageState extends State<ProvedoresListPage> {
                 appBarDelayTime: 500.ms,
               ),
             ),
-            /*
             BlocSelector<ProvedorController, ProvedorState, bool>(
-                bloc: widget.provedorController,
-                selector: (state) => state.status == ProvedorStatus.loading,
-                builder: (context, showLoading) {
-                  return Visibility(
-                    visible: showLoading,
+              bloc: widget.provedorController,
+              selector: (state) => state.status == ProvedorStatus.loading,
+              builder: (context, showLoading) {
+                return SliverVisibility(
+                  visible: showLoading,
+                  sliver: SliverToBoxAdapter(
                     child: SizedBox(
-                      height: MediaQuery.sizeOf(context).height,
-                      width: MediaQuery.sizeOf(context).width,
+                      height: MediaQuery.sizeOf(context).height * .60,
                       child: Center(
-                        child: LoadingAnimationWidget.fourRotatingDots(
-                            color: ColorConstants.secondary, size: 35),
+                        child: LoadingAnimationWidget.staggeredDotsWave(
+                          color: ColorConstants.primary,
+                          size: 35,
+                        ),
                       ),
                     ),
-                  );
-                }),
-            */
+                  ),
+                );
+              },
+            ),
             BlocSelector<ProvedorController, ProvedorState,
                     List<ProvedorModel>>(
                 bloc: widget.provedorController,
@@ -84,7 +88,13 @@ class _ProvedoresListPageState extends State<ProvedoresListPage> {
                       delegate: SliverChildListDelegate(
                         list
                             .map((e) => CardProvedor(provedorModel: e))
-                            .toList(),
+                            .toList()
+                            .animate(interval: 100.ms, delay: 300.ms)
+                            .slideX(
+                                duration: 300.ms,
+                                begin: 3,
+                                end: 0,
+                                curve: Curves.easeInOutSine),
                       ),
                     ),
                   );

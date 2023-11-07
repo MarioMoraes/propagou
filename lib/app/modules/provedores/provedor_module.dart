@@ -1,7 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 import 'package:propagou/app/modules/provedores/controller/provedor_state.dart';
-import 'package:propagou/app/modules/provedores/list/provedores_list_page.dart';
 import 'package:propagou/app/repository/provedores/cep/cep_repository.dart';
 import 'package:propagou/app/repository/provedores/cep/cep_repository_impl.dart';
 import 'package:propagou/app/repository/provedores/list/list_provedores_repository.dart';
@@ -45,13 +44,6 @@ class ProvedorModule extends Module {
           Modular.initialRoute,
           child: (_, args) => ProvedorPage(
             controller: Modular.get<CepController>(),
-          ),
-        ),
-        ChildRoute(
-          Modular.initialRoute,
-          child: (_, args) => ProvedoresListPage(
-            provedorController: Modular.get<ProvedorController>(),
-            classificacao: args.data,
           ),
         ),
       ];
