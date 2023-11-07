@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:propagou/app/core/widgets/animated_app_bar_widget.dart';
 import 'package:propagou/app/models/provedor_model.dart';
@@ -40,7 +41,18 @@ class _ProvedoresListPageState extends State<ProvedoresListPage> {
       bloc: widget.provedorController,
       listener: (context, state) {
         if (state.provedores.isEmpty) {
-          const SnackBar(content: Text('No Selected'));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+                dismissDirection: DismissDirection.startToEnd,
+                duration: const Duration(seconds: 5),
+                backgroundColor: const Color.fromARGB(255, 116, 33, 27),
+                action: SnackBarAction(
+                    label: 'OK',
+                    onPressed: () {
+                      Modular.to.pop();
+                    }),
+                content: const Icon(Icons.add)),
+          );
         }
       },
       child: Scaffold(
